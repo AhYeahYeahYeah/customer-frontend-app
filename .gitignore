@@ -1,0 +1,13 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+node_modules/
+.project 
+.DS_Store  
+*/.DS_Store
+/.git/
+/.idea
+/.hbuilderx
+/.unpackage
+/unpackage
+unpackage/
+/.rar
