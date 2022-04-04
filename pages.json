@@ -82,20 +82,20 @@
 		"backgroundColor": "#F8F8F8",
 		"list": [{
 				"pagePath": "pages/tabbar/product/product",
-				"iconPath": "static/tabbar/list.png",
-				"selectedIconPath": "static/tabbar/list_active.png",
+				"iconPath": "static/tabbar/product.png",
+				"selectedIconPath": "static/tabbar/product_active.png",
 				"text": "产品"
 			},
 			{
 				"pagePath": "pages/tabbar/news/news",
-				"iconPath": "static/tabbar/grid.png",
-				"selectedIconPath": "static/tabbar/grid_active.png",
+				"iconPath": "static/tabbar/news.png",
+				"selectedIconPath": "static/tabbar/news_active.png",
 				"text": "资讯"
 			},
 			{
 				"pagePath": "pages/tabbar/home/home",
-				"iconPath": "static/tabbar/me.png",
-				"selectedIconPath": "static/tabbar/me.png",
+				"iconPath": "static/tabbar/people.png",
+				"selectedIconPath": "static/tabbar/people_active.png",
 				"text": "主页"
 			}
 		]
