@@ -30,6 +30,9 @@
  
  <template>
  	<view>
+		<navigator url="/pages/test/test" hover-class="navigator-hover">
+			<button type="primary" plain="true" style="width: 250rpx; margin-bottom: 30rpx;">更多</button>
+		</navigator>
  		<!-- <page-head :title="title"></page-head> -->
  		<view class="uni-padding-wrap uni-common-mt">
  			<!-- <view style="font-size: 12px; color: #666;">注：PC 不支持下拉刷新</view> -->
