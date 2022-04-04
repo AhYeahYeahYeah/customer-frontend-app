@@ -22,6 +22,15 @@
             
         },
 		{
+		    "path" : "pages/tabbar/product/products",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},
+		{
 			"path": "pages/tabbar/product/product",
 			"style": {
 				"navigationBarTitleText": "产品",
@@ -74,6 +83,15 @@
             
         }
         
+        ,{
+            "path" : "pages/tabbar/productinfo/productinfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"tabBar": {
 		"color": "#7A7E83",
