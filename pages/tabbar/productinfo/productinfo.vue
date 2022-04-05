@@ -187,13 +187,13 @@
 	font-size: 35rpx;
 }
 .label-riskLevel{
-	padding: 60rpx;
-	padding-left: 90rpx;
+	padding: 50rpx;
+	padding-left: 80rpx;
 	font-size: 35rpx;
 }
 .label-settlementMethod{
-	padding: 60rpx;
-	padding-left: 90rpx;
+	padding: 50rpx;
+	padding-left: 80rpx;
 	font-size: 35rpx;
 }
 
