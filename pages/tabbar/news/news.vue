@@ -6,27 +6,43 @@
 	 unicloud-db 组件文档：https://uniapp.dcloud.io/uniCloud/unicloud-db
 	 DB Schema 规范：https://uniapp.dcloud.net.cn/uniCloud/schema
 	 -->
-	<view>
+	<view class="center">
+		<view class="navBar">
+			<view class="input-view">
+				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
+				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
+					@confirm="confirm" />
+			</view>
+			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
+				<image src="../../../static/service.png" style="width: 50rpx;height: 50rpx;" />
+				<text class="text" style="color: white;">客服</text>
+			</view>
+			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
+				<image src="../../../static/local.png" style="width: 50rpx;height: 50rpx;" />
+				<text class="text" style="color: white;">{{localtion}}</text>
+			</view>
+
+		</view>
 		<!-- 刷新页面后的顶部提示框 -->
 		<view class="tips" :class="{ 'tips-ani': tipShow }">为您更新了10条最新新闻动态</view>
-<!-- 		<unicloud-db ref="udb" v-slot:default="{data, loading, error, options}" :options="formData" :collection="collection"
+		<!-- 		<unicloud-db ref="udb" v-slot:default="{data, loading, error, options}" :options="formData" :collection="collection"
 		 :field="field" @load="load"> -->
-			<!-- 基于 uni-list 的页面布局 -->
-			<uni-list>
-				<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
-				<uni-list-item direction="column" :note="'时间：2022'" >
-					<!-- 通过header插槽定义列表顶部显示为图片 -->
-					<template v-slot:header>
-						<view class="uni-title">题目：Hello</view>
-						<view class="uni-thumb uni-content list-picture">
-							<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
-							<image src="@/static/uni-center/defaultAvatarUrl.png" mode="aspectFill"></image>
-						</view>
-					</template>
-				</uni-list-item>
-			</uni-list>
-			<!-- 通过 loadMore 组件实现上拉加载效果，如需自定义显示内容，可参考：https://ext.dcloud.net.cn/plugin?id=29 -->
-			<!-- <uni-load-more v-if="loading || options.status === 'noMore' " :status="options.status" /> -->
+		<!-- 基于 uni-list 的页面布局 -->
+		<uni-list>
+			<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
+			<uni-list-item direction="column" :note="'时间：2022'">
+				<!-- 通过header插槽定义列表顶部显示为图片 -->
+				<template v-slot:header>
+					<view class="uni-title">题目：Hello</view>
+					<view class="uni-thumb uni-content list-picture">
+						<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
+						<image src="@/static/uni-center/defaultAvatarUrl.png" mode="aspectFill"></image>
+					</view>
+				</template>
+			</uni-list-item>
+		</uni-list>
+		<!-- 通过 loadMore 组件实现上拉加载效果，如需自定义显示内容，可参考：https://ext.dcloud.net.cn/plugin?id=29 -->
+		<!-- <uni-load-more v-if="loading || options.status === 'noMore' " :status="options.status" /> -->
 		</unicloud-db>
 	</view>
 </template>
@@ -90,7 +106,11 @@
 		min-height: 100%;
 		height: auto;
 	}
-
+	view {
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+	}
 	.tips {
 		color: #67c23a;
 		font-size: 14px;
@@ -141,6 +161,48 @@
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
+	}
+
+	.navBar {
+		width: 750rpx;
+		padding: 20rpx;
+		padding-top: 40px;
+		background: #e57373;
+		// border-radius: 30rpx;
+		flex-direction: row;
+		// align-items: center;
+	}
+
+	.input-view {
+		display: flex-start;
+		flex-direction: row;
+		flex: 1;
+		background-color: #f8f8f8;
+		height: 80rpx;
+		border-radius: 15px;
+		padding: 0 15px;
+		flex-wrap: nowrap;
+		margin: 7px 0;
+		line-height: 80rpx;
+		width: 500rpx;
+		align-items: flex-start;
+
+		margin-left: 10rpx;
+	}
+
+	.nav-bar-input {
+		height: 80rpx;
+		line-height: 80rpx;
+		/* #ifdef APP-PLUS-NVUE */
+		width: 370rpx;
+		/* #endif */
+		padding: 0 5px;
+		font-size: 12px;
+		background-color: #f8f8f8;
+	}
+
+	.input-uni-icon {
+		line-height: 80rpx;
 	}
 </style>
 

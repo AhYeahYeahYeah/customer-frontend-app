@@ -1,10 +1,26 @@
 <template>
 	<view>
+		<view class="navBar">
+			<view class="input-view">
+				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
+				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
+					@confirm="confirm" />
+			</view>
+			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
+				<image src="../../../static/service.png" style="width: 50rpx;height: 50rpx;" />
+				<text class="text" style="color: white;">客服</text>
+			</view>
+			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
+				<image src="../../../static/local.png" style="width: 50rpx;height: 50rpx;" />
+				<text class="text" style="color: white;">{{localtion}}</text>
+			</view>
+		
+		</view>
 		<view class="uni-form-item uni-column">
 				<input class="uni-input" name="input" placeholder="请输入" />
 				<button type="default">搜索</button>
 		</view>
-		<button type="default">智能客服</button>
+		<!-- <button type="default">智能客服</button> -->
 	<view class="content">
 		<view class="uni-margin-wrap">
 			<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
@@ -71,6 +87,52 @@
 </script>
 
 <style>
+	view {
+		display: flex;
+		box-sizing: border-box;
+		flex-direction: column;
+	}
 	.uni-product-list-body{height: auto;}
 	.uni-product-list-text-top{line-height: 1.6em;}
+	.navBar {
+		width: 750rpx;
+		padding: 20rpx;
+		padding-top: 40px;
+		background: #e57373;
+		// border-radius: 30rpx;
+		flex-direction: row;
+		// align-items: center;
+	}
+	
+	.input-view {
+		display: flex-start;
+		flex-direction: row;
+		flex: 1;
+		background-color: #f8f8f8;
+		height: 80rpx;
+		border-radius: 15px;
+		padding: 0 15px;
+		flex-wrap: nowrap;
+		margin: 7px 0;
+		line-height: 80rpx;
+		width: 500rpx;
+		align-items: flex-start;
+	
+		margin-left: 10rpx;
+	}
+	
+	.nav-bar-input {
+		height: 80rpx;
+		line-height: 80rpx;
+		/* #ifdef APP-PLUS-NVUE */
+		width: 370rpx;
+		/* #endif */
+		padding: 0 5px;
+		font-size: 12px;
+		background-color: #f8f8f8;
+	}
+	
+	.input-uni-icon {
+		line-height: 80rpx;
+	}
 </style>
