@@ -19,6 +19,7 @@
 	/* #ifndef APP-NVUE */
 	@import '@/static/customicons.css';
 	@import './common/uni.css';
+	@import "@/static/icon-kefu/iconfont.css";
 	// 设置整个项目的背景色
 	page {
 		background-color: #f5f5f5;
