@@ -16,10 +16,10 @@
 			</view>
 		
 		</view>
-		<view class="uni-form-item uni-column">
+<!-- 		<view class="uni-form-item uni-column">
 				<input class="uni-input" name="input" placeholder="请输入" />
 				<button type="default">搜索</button>
-		</view>
+		</view> -->
 		<!-- <button type="default">智能客服</button> -->
 	<view class="content">
 		<view class="uni-margin-wrap">
