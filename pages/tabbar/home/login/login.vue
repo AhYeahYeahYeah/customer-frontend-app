@@ -3,7 +3,8 @@
 <!-- 		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">登录</text>
 		</uni-card> -->
-				<uni-section title="登录" type="line">
+			<image src="../../../../static/logo.png" mode="aspectFit" style="left: 130rpx; width: 500rpx; height: 200rpx;"></image>
+			<uni-section title="登录" type="line" style="background-color: inherit;">
 			<view class="example">
 			<!-- 	<view class="segmented-control">
 					<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem"
@@ -19,11 +20,8 @@
 						<uni-easyinput v-model="formData.password" type="password" placeholder="请输入密码" />
 					</uni-forms-item>
 				</uni-forms>
-				<view class="button-group">
-					<!-- <button type="primary" size="mini" @click="add">新增域名</button> -->
-					<button type="primary" size="mini" @click="submit">登录</button>
-					<button type="primary" size="mini" @click="register">还未注册？</button>
-				</view>
+				<button type="default" @click="submit" style="background-color: #e57373;color: white;" >登录</button>
+				<text class="link" @click="register" style="position: relative;top: 20rpx;left: 550rpx;">还未注册？</text>
 			</view>
 		</uni-section>
 	
@@ -73,7 +71,7 @@
 <style lang="scss">
 	.example {
 		padding: 15px;
-		background-color: #fff;
+		background-color: inherit;
 	}
 
 	.segmented-control {
@@ -97,4 +95,5 @@
 		height: 35px;
 		margin-left: 10px;
 	}
+
 </style>

@@ -81,8 +81,9 @@ export class EntityApi {
             baseURL: `${entityBase}/`,
             headers: {
                 Accept: 'application/json',
-                Authorization: token
+                Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDkxMzI0MDIsImV4cCI6MTY0OTIxODgwMiwiYWNjb3VudCI6IjMyMzIzIn0.RMjSSJPmdtAzYgrBRItAvxSHPSt1PYCPz3mNCeP6G8E"
             }
+			// ,adapter: axiosAdapterUniapp
         });
     }
 

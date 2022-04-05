@@ -11,6 +11,7 @@
 				:limit="1"
 				file-extname="png,jpg"
 				@select="select" 
+
 				style="margin-left: 290rpx;margin-bottom: 50rpx;"
 				/>
 				<uni-forms ref="baseForm" :modelValue="formData" v-if="token.length === 0">
@@ -27,11 +28,8 @@
 						<uni-easyinput v-model="formData.password" type="password" placeholder="请输入密码" />
 					</uni-forms-item>
 				</uni-forms>
-				<view class="button-group">
-					<!-- <button type="primary" size="mini" @click="add">新增域名</button> -->
-					<button type="primary" size="mini" @click="submit">注册</button>
-					<button type="primary" size="mini" @click="login">已有帐号？</button>
-				</view>
+				<button type="default" @click="submit" style="background-color: #e57373;color: white;">注册</button>
+				<text class="link" @click="login" style="position: relative;top: 20rpx;left: 550rpx;">已有账号？</text>
 			</view>
 		</uni-section>
 	
@@ -43,6 +41,7 @@
 <script>
 	import {AuthApi} from "../../../../api/restful.js";
 	import sha1 from "sha1";
+	import { pathToBase64, base64ToPath } from 'image-tools';
 	export default {
 		data() {
 			return {
@@ -98,8 +97,22 @@
 				})
 			},
 			select: function(e) {
-				// console.log(e.tempFilePaths[0]);
-				this.urlTobase64(e.tempFilePaths[0]);
+				console.log(e.tempFilePaths[0]);
+				uni.compressImage({
+				  src: e.tempFilePaths[0],
+				  // quality: 10,
+				  width: "150px",
+				  height: "150px",
+				  success: res => {
+				    // console.log(res.tempFilePath)
+					pathToBase64(res.tempFilePath)
+					.then(base64 => {
+						this.formData.avatar=base64;
+						console.log(base64);
+					})
+				  }
+				})
+				// this.urlTobase64(e.tempFilePaths[0]);
 				// this.userAvatar= e.tempFilePaths[0];
 			}
 		}

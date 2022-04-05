@@ -5,7 +5,7 @@
 		</uni-card> -->
 		<view class="userInfo" @click.capture="toUserInfo">
 			<!-- <cloud-image width="150rpx" height="150rpx" v-if="userInfo.avatar_file&&userInfo.avatar_file.url" :src="userInfo.avatar_file.url"></cloud-image> -->
-			<image class="logo-img" v-if="!token" src="@/static/uni-center/defaultAvatarUrl.png" >
+			<image class="logo-img" v-if="!token" src="@/static/uni-center/grey.png" >
 			</image>
 			<image class="logo-img" v-else :src="customer.avatar" ></image>
 			<view class="logo-title">
@@ -14,20 +14,22 @@
 			</view>
 		</view>
 		
-		<uni-grid class="grid" :column="3" :showBorder="false" :square="true">
-			<uni-grid-item class="item">
-				<uni-icons :type="'cart'" color="#007AFF"  size="26" />
-				<text class="text">订单</text>
-			</uni-grid-item>
-			<uni-grid-item class="item">
-				<uni-icons :type="'star'" color="#007AFF"  size="26" />
-				<text class="text">收藏</text>
-			</uni-grid-item>
-			<uni-grid-item class="item">
-				<uni-icons :type="'wallet'" color="#007AFF"  size="26" />
-				<text class="text">钱包</text>
-			</uni-grid-item>
-		</uni-grid>
+		<uni-card style="border-radius: 40rpx;">
+			<uni-grid class="grid" :column="3" :showBorder="false" :square="true">
+				<uni-grid-item class="item">
+					<uni-icons :type="'cart'" color="#ffc400"  size="26" />
+					<text class="text">订单</text>
+				</uni-grid-item>
+				<uni-grid-item class="item">
+					<uni-icons :type="'star'" color="#ffc400"  size="26" />
+					<text class="text">收藏</text>
+				</uni-grid-item>
+				<uni-grid-item class="item">
+					<uni-icons :type="'wallet'" color="#ffc400"  size="26" />
+					<text class="text">钱包</text>
+				</uni-grid-item>
+			</uni-grid>
+		</uni-card>
 		<uni-list class="center-list" >
 			<uni-list-item :title="'设置'" :clickable="true"  :show-extra-icon="true"
 			 link	:extraIcon="{type:'gear-filled',color:'#999'}">
@@ -201,10 +203,12 @@
 		width: 750rpx;
 		padding: 20rpx;
 		padding-top: 70px;
-		background-image: url(/static/uni-center/headers.png);
+		background: #e57373;
+		border-radius: 0 0 30rpx 30rpx; 
 		flex-direction: column;
 		align-items: center;
 	}
+
 	
 	.logo-title {
 		flex: 1;
@@ -221,7 +225,9 @@
 	}
 	
 	.center-list {
-		margin-top: 30rpx;
+		left: 30rpx;
+		width: 700rpx;
+		margin-top: 20rpx;
 		background-color: #f9f9f9;
 	}
 	

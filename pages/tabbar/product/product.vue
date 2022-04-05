@@ -48,7 +48,8 @@
 			uni.showLoading({
 				title:"加载中..."
 			})
-			new EntityApi().getProducts().then((res)=>{
+			new EntityApi()
+			.getProducts().then((res)=>{
 				console.log(res);
 				this.products=res.data;
 				uni.hideLoading();
