@@ -1,6 +1,5 @@
 <template>
 	<view>
-<<<<<<< Updated upstream
 		<view class="navBar">
 			<view class="input-view">
 				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
@@ -43,55 +42,57 @@
 					:key="index" v-on:click="productinfo(item.pid)">
 					<view class="uni-product-list">
 						<view class="uni-product-list-text-top">{{item.productName}}</view>
-=======
-		<view class="uni-form-item uni-column">
-		    <view class="uni-input-wrapper">
-				<uni-icons type="search" size="28"></uni-icons>
-		        <input class="uni-input" confirm-type="search" placeholder="请输入" />
-				<button class="search-button" type="primary">搜索</button>
-				<uni-icons custom-prefix="kefuicon" type="icon-kefu" size="30" v-on:click="openkf()"></uni-icons>
-			</view>
-		</view>
-	<view class="content">
-		<view class="uni-margin-wrap">
-			<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item>
-					<image src="../../../static/c1.png" mode=""></image>
-				</swiper-item>
-				<swiper-item>
-					<image src="../../../static/c2.png" mode=""></image>
-				</swiper-item>
-				<swiper-item>
-					<image src="../../../static/c3.png" mode=""></image>
-				</swiper-item>
-			</swiper>
-		</view>
-		<view class="uni-list">
-			<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in products" :key="index" v-on:click="productinfo(item.pid)">
-				<view class="uni-media-list">
-					<view class="uni-media-list-text-top">
-						<label class="uni-product-list-text-top">{{item.productName}}</label>
-						<view>{{item.minAmount}}元起购</view>
-					</view>
-					<view class="uni-product-annualRate">
-						<label class="product-annualRate">{{Number(item.annualRate*100).toFixed(2)}}%</label>
-						<view>
-							<label class="uni-media-list-text-bottom">年化利率</label>
+						<view class="uni-form-item uni-column">
+							<view class="uni-input-wrapper">
+								<uni-icons type="search" size="28"></uni-icons>
+								<input class="uni-input" confirm-type="search" placeholder="请输入" />
+								<button class="search-button" type="primary">搜索</button>
+								<uni-icons custom-prefix="kefuicon" type="icon-kefu" size="30" v-on:click="openkf()">
+								</uni-icons>
+							</view>
 						</view>
->>>>>>> Stashed changes
+						<view class="content">
+							<view class="uni-margin-wrap">
+								<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay"
+									:interval="interval" :duration="duration">
+									<swiper-item>
+										<image src="../../../static/c1.png" mode=""></image>
+									</swiper-item>
+									<swiper-item>
+										<image src="../../../static/c2.png" mode=""></image>
+									</swiper-item>
+									<swiper-item>
+										<image src="../../../static/c3.png" mode=""></image>
+									</swiper-item>
+								</swiper>
+							</view>
+							<view class="uni-list">
+								<view class="uni-list-cell" hover-class="uni-list-cell-hover"
+									v-for="(item,index) in products" :key="index" v-on:click="productinfo(item.pid)">
+									<view class="uni-media-list">
+										<view class="uni-media-list-text-top">
+											<label class="uni-product-list-text-top">{{item.productName}}</label>
+											<view>{{item.minAmount}}元起购</view>
+										</view>
+										<view class="uni-product-annualRate">
+											<label
+												class="product-annualRate">{{Number(item.annualRate*100).toFixed(2)}}%</label>
+											<view>
+												<label class="uni-media-list-text-bottom">年化利率</label>
+											</view>
+										</view>
+									</view>
+								</view>
+							</view>
+							<view class="button-sp-area">
+								<button class="more-button" type="primary" plain="true"
+									v-on:click="moreProducts()">更多</button>
+							</view>
+						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-<<<<<<< Updated upstream
-
-=======
-		<view class="button-sp-area">
-		    <button class="more-button" type="primary" plain="true" v-on:click="moreProducts()">更多</button>
-		</view>
-	</view>
-	
->>>>>>> Stashed changes
 	</view>
 </template>
 
@@ -112,16 +113,7 @@
 		},
 		onLoad() {
 			uni.showLoading({
-<<<<<<< Updated upstream
 				title: "加载中..."
-=======
-				title:"加载中..."
-			})
-			new EntityApi().getProducts().then((res)=>{
-				console.log(res);
-				this.products=res.data.slice(0, 4);
-				uni.hideLoading();
->>>>>>> Stashed changes
 			})
 			new EntityApi()
 				.getProducts().then((res) => {
@@ -162,9 +154,9 @@
 					url: './products'
 				})
 			},
-			openkf(){
+			openkf() {
 				uni.navigateTo({
-					url:'../../znkf/znkf'
+					url: '../../znkf/znkf'
 				})
 			}
 		}
@@ -172,7 +164,6 @@
 </script>
 
 <style>
-<<<<<<< Updated upstream
 	view {
 		display: flex;
 		box-sizing: border-box;
@@ -228,58 +219,68 @@
 	.input-uni-icon {
 		line-height: 80rpx;
 	}
-=======
+
 	@import "@/static/icon-kefu/iconfont.css";
+
 	.uni-media-list {
 		padding-right: 70rpx;
 	}
-	.uni-media-list-body{height: auto;}
-	.uni-media-list-text-top{
+
+	.uni-media-list-body {
+		height: auto;
+	}
+
+	.uni-media-list-text-top {
 		line-height: 1.6em;
 	}
-	.uni-product-list-text-top{
+
+	.uni-product-list-text-top {
 		font-size: 35rpx;
 		font-weight: 700;
 	}
-	.product-annualRate{
+
+	.product-annualRate {
 		padding-right: 50rpx;
 		font-size: 35rpx;
 		color: #FF3333;
 		font-weight: 700;
 	}
-	.uni-media-list-text-bottom{
+
+	.uni-media-list-text-bottom {
 		font-size: 10rpx;
 	}
+
 	.more-button {
-	    margin-top: 30rpx;
-	    margin-bottom: 30rpx;
+		margin-top: 30rpx;
+		margin-bottom: 30rpx;
 	}
-	.search-button{
+
+	.search-button {
 		height: auto;
 		width: auto;
 		font-size: 33upx;
 	}
+
 	.button-sp-area {
-	    margin: 0 auto;
-	    width: 60%;
+		margin: 0 auto;
+		width: 60%;
 	}
+
 	.uni-input-wrapper {
-	    /* #ifndef APP-NVUE */
-	    display: flex;
-	    /* #endif */
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    background-color: #FFFFFF;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		flex-wrap: nowrap;
+		background-color: #FFFFFF;
 	}
-	
+
 	.uni-input {
-	    height: 28px;
-	    line-height: 28px;
-	    font-size: 16px;
-	    padding: 0px;
-	    flex: 1;
-	    background-color: #FFFFFF;
+		height: 28px;
+		line-height: 28px;
+		font-size: 16px;
+		padding: 0px;
+		flex: 1;
+		background-color: #FFFFFF;
 	}
-	
->>>>>>> Stashed changes
 </style>

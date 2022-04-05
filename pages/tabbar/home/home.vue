@@ -6,7 +6,7 @@
 				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
 					@confirm="confirm" />
 			</view>
-			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
+			<view @click.capture="toServices" style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
 				<image src="../../../static/service.png" style="width: 50rpx;height: 50rpx;" />
 				<text class="text" style="color: white;">客服</text>
 			</view>
@@ -142,7 +142,7 @@
 							let reg = /.+?(省|市|自治区|自治州|县|区)/g;
 							let addressList = address.match(reg).toString().split(",");
 							console.log(addressList[1], '位置信息')
-							this.location=addressList[1]
+							this.location = addressList[1]
 						}
 					)
 				}
@@ -180,6 +180,18 @@
 				uni.clearStorage()
 				this.token = undefined
 				// this.customer.cname=''
+			},
+			toServices: function() {
+				// console.log(123);
+				uni.navigateTo({
+					url: "/pages/tabbar/customer-services/customer-services",
+					fail(error) {
+						console.log(error)
+					}
+				})
+			},
+			confirm: function() {
+				console.log(123);
 			}
 		},
 	}

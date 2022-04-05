@@ -20,22 +20,17 @@
 
 		},
 		{
-<<<<<<< Updated upstream
 			"path": "pages/tabbar/product/products",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
-
-=======
-		    "path" : "pages/tabbar/product/products",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "全部产品",
-		        "enablePullDownRefresh": false
-		    }
-		    
->>>>>>> Stashed changes
+		}, {
+			"path": "pages/tabbar/product/products",
+			"style": {
+				"navigationBarTitleText": "全部产品",
+				"enablePullDownRefresh": false
+			}
 		},
 		{
 			"path": "pages/tabbar/product/product",
@@ -58,7 +53,6 @@
 
 		},
 		{
-<<<<<<< Updated upstream
 			"path": "pages/tabbar/home/register/register",
 			"style": {
 				"navigationBarTitleText": "",
@@ -74,38 +68,34 @@
 				"enablePullDownRefresh": false
 			}
 
+		},
+		{
+			"path": "pages/tabbar/customer-services/customer-services",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+
+		,
+		{
+			"path": "pages/tabbar/productinfo/productinfo",
+			"style": {
+				"navigationBarTitleText": "产品详情",
+				"enablePullDownRefresh": false
+			}
+
+		},
+		{
+			"path": "pages/znkf/znkf",
+			"style": {
+				"navigationBarTitleText": "智能客服",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	],
-=======
-            "path" : "pages/tabbar/home/register/register",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        
-        ,{
-            "path" : "pages/tabbar/productinfo/productinfo",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "产品详情",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/znkf/znkf",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "智能客服",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
->>>>>>> Stashed changes
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "black",

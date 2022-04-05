@@ -15,7 +15,9 @@
             "autoclose" : true,
             "delay" : 0
         },
-        "modules" : {},
+        "modules" : {
+            "Speech" : {}
+        },
         /* 模块配置 */
         "distribute" : {
             /* 应用发布信息 */
@@ -42,7 +44,15 @@
             "ios" : {},
             /* ios打包配置 */
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {},
+                "push" : {},
+                "speech" : {
+                    "baidu" : {
+                        "appid" : "25898929",
+                        "apikey" : "Q3W3heRVtXq9U0fvKjVOaqNV",
+                        "secretkey" : "5loQsDsz9BHZaRH5GUQDiypPyqS5uxMV"
+                    }
+                }
             },
             "icons" : {
                 "android" : {
@@ -79,9 +89,18 @@
             "splashscreen" : {
                 "androidStyle" : "default",
                 "android" : {
-                    "hdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/shouji1.png",
-                    "xhdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/shouji1.png",
-                    "xxhdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/shouji1.png"
+                    "hdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
+                    "xhdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
+                    "xxhdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png"
+                },
+                "iosStyle" : "default",
+                "ios" : {
+                    "iphone" : {
+                        "portrait-896h@3x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
+                        "landscape-896h@3x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
+                        "portrait-896h@2x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
+                        "landscape-896h@2x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png"
+                    }
                 }
             }
         }
