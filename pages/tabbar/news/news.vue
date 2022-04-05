@@ -19,7 +19,7 @@
 			</view>
 			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
 				<image src="../../../static/local.png" style="width: 50rpx;height: 50rpx;" />
-				<text class="text" style="color: white;">{{localtion}}</text>
+				<text class="text" style="color: white;">{{location}}</text>
 			</view>
 
 		</view>
@@ -52,7 +52,7 @@
 		components: {},
 		data() {
 			return {
-				localtion: ''
+				location: ''
 				// // 数据表名
 				// collection: 'opendb-news-articles',
 				// // 查询字段，多个字段用 , 分割
@@ -79,7 +79,7 @@
 							let reg = /.+?(省|市|自治区|自治州|县|区)/g;
 							let addressList = address.match(reg).toString().split(",");
 							console.log(addressList[1], '位置信息')
-							this.localtion = addressList[1]
+							this.location = addressList[1]
 						}
 					)
 				}

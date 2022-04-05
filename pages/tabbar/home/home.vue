@@ -142,7 +142,7 @@
 							let reg = /.+?(省|市|自治区|自治州|县|区)/g;
 							let addressList = address.match(reg).toString().split(",");
 							console.log(addressList[1], '位置信息')
-							this.localtion=addressList[1]
+							this.location=addressList[1]
 						}
 					)
 				}

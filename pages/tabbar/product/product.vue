@@ -12,7 +12,7 @@
 			</view>
 			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
 				<image src="../../../static/local.png" style="width: 50rpx;height: 50rpx;" />
-				<text class="text" style="color: white;">{{localtion}}</text>
+				<text class="text" style="color: white;">{{location}}</text>
 			</view>
 
 		</view>
@@ -57,7 +57,7 @@
 	export default {
 		data() {
 			return {
-				localtion: '',
+				location: '',
 				indicatorDots: true,
 				autoplay: true,
 				interval: 2000,
@@ -91,7 +91,7 @@
 							let reg = /.+?(省|市|自治区|自治州|县|区)/g;
 							let addressList = address.match(reg).toString().split(",");
 							console.log(addressList[1], '位置信息')
-							this.localtion = addressList[1]
+							this.location = addressList[1]
 						}
 					)
 				}
