@@ -1,14 +1,6 @@
 <template>
 	<view class="center">
 		<view class="navBar">
-			<!-- 			<block slot="left">
-						<view class="city">
-							<view>
-								<text class="uni-nav-bar-text">{{ city }}</text>
-							</view>
-							<uni-icons type="arrowdown" color="#666" size="18" />
-						</view>
-					</block> -->
 			<view class="input-view">
 				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
 				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
@@ -20,7 +12,7 @@
 			</view>
 			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
 				<image src="../../../static/local.png" style="width: 50rpx;height: 50rpx;" />
-				<text class="text" style="color: white;">{{localtion}}</text>
+				<text class="text" style="color: white;">{{location}}</text>
 			</view>
 
 		</view>
@@ -126,7 +118,7 @@
 					nickName: '',
 					cid: ''
 				},
-				localtion: ''
+				location: ''
 			}
 		},
 		onLoad() {

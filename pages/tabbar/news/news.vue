@@ -52,6 +52,7 @@
 		components: {},
 		data() {
 			return {
+				localtion: ''
 				// // 数据表名
 				// collection: 'opendb-news-articles',
 				// // 查询字段，多个字段用 , 分割
@@ -63,6 +64,27 @@
 			};
 		},
 		onLoad() {},
+		onShow() {
+			uni.getLocation({
+				type: 'wgs84',
+				geocode: true,
+				success: (res) => {
+					let point = new plus.maps.Point(res.longitude, res.latitude);
+					plus.maps.Map.reverseGeocode(
+						point, {},
+						(event) => {
+							let address = event.address; // 转换后的地理位置
+							let point = event.coord; // 转换后的坐标信息
+							let coordType = event.coordType; // 转换后的坐标系类型
+							let reg = /.+?(省|市|自治区|自治州|县|区)/g;
+							let addressList = address.match(reg).toString().split(",");
+							console.log(addressList[1], '位置信息')
+							this.localtion = addressList[1]
+						}
+					)
+				}
+			});
+		},
 		methods: {
 			// load(data, ended) {
 			// 	if (ended) {
@@ -106,11 +128,13 @@
 		min-height: 100%;
 		height: auto;
 	}
+
 	view {
 		display: flex;
 		box-sizing: border-box;
 		flex-direction: column;
 	}
+
 	.tips {
 		color: #67c23a;
 		font-size: 14px;
