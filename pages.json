@@ -75,7 +75,25 @@
             }
             
         }
-	],       
+	    ,{
+            "path" : "pages/tabbar/order/order",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "确认订单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+		,{
+		    "path" : "pages/tabbar/order/orderResult",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "订单结果",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+    ],       
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "black",

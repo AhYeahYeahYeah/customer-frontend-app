@@ -21,18 +21,19 @@
 				<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay"
 					:interval="interval" :duration="duration">
 					<swiper-item>
-						<image src="../../../static/c1.png" mode=""></image>
+						<image class="wrap-image" src="../../../static/c1.png" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image src="../../../static/c2.png" mode=""></image>
+						<image class="wrap-image" src="../../../static/c2.png" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image src="../../../static/c3.png" mode=""></image>
+						<image class="wrap-image" src="../../../static/c3.png" mode=""></image>
 					</swiper-item>
 				</swiper>
 			</view>
 			<view class="uni-list">
-				<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in products" :key="index" v-on:click="productinfo(item.pid)">
+				<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in products"
+					:key="index" v-on:click="productinfo(item.pid)">
 					<view class="uni-media-list">
 						<view class="uni-media-list-text-top">
 							<label class="uni-product-list-text-top">{{item.productName}}</label>
@@ -75,7 +76,6 @@
 			})
 			new EntityApi()
 				.getProducts().then((res) => {
-					console.log(res);
 					this.products = res.data.slice(0, 3);
 					uni.hideLoading();
 				})
@@ -114,7 +114,7 @@
 			},
 			openkf() {
 				uni.navigateTo({
-					url: '../../znkf/znkf'
+
 				})
 			}
 		}
@@ -171,51 +171,84 @@
 	}
 
 	@import "@/static/icon-kefu/iconfont.css";
+
+	.uni-margin-wrap {
+		width: 690rpx;
+		width: 100%;
+	}
+
+	.swiper {
+		height: 300rpx;
+	}
+
+	.swiper-item {
+		display: block;
+		height: 300rpx;
+		line-height: 300rpx;
+		text-align: center;
+	}
+
+	.wrap-image {
+		height: 300rpx;
+		width: 690rpx;
+		width: 100%;
+	}
+
 	.uni-media-list {
 		padding-right: 70rpx;
 		flex-direction: row;
 	}
-	.uni-media-list-body{height: auto;}
-	.uni-media-list-text-top{
+
+	.uni-media-list-body {
+		height: auto;
+	}
+
+	.uni-media-list-text-top {
 		line-height: 1.6em;
 	}
-	.uni-product-list-text-top{
+
+	.uni-product-list-text-top {
 		font-size: 35rpx;
 		font-weight: 700;
 	}
-	.product-annualRate{
+
+	.product-annualRate {
 		padding-right: 50rpx;
 		font-size: 35rpx;
 		color: #FF3333;
 		font-weight: 700;
 	}
-	.uni-media-list-text-bottom{
+
+	.uni-media-list-text-bottom {
 		font-size: 20rpx;
 	}
-	.search-button{
+
+	.search-button {
 		height: auto;
 		width: auto;
 		font-size: 33upx;
 	}
+
 	.button-sp-area {
-	    margin: 0 auto;
-	    width: 60%;
+		margin: 0 auto;
+		width: 60%;
 	}
+
 	.uni-input-wrapper {
-	    /* #ifndef APP-NVUE */
-	    display: flex;
-	    /* #endif */
-	    flex-direction: row;
-	    flex-wrap: nowrap;
-	    background-color: #FFFFFF;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: row;
+		flex-wrap: nowrap;
+		background-color: #FFFFFF;
 	}
-	
+
 	.uni-input {
-	    height: 28px;
-	    line-height: 28px;
-	    font-size: 16px;
-	    padding: 0px;
-	    flex: 1;
-	    background-color: #FFFFFF;
+		height: 28px;
+		line-height: 28px;
+		font-size: 16px;
+		padding: 0px;
+		flex: 1;
+		background-color: #FFFFFF;
 	}
 </style>

@@ -11,7 +11,7 @@ const generalBackendBase = `${baseUrl}:${generalBackendPort}/${version}`;
 const authBase = `${generalBackendBase}/auth`;
 const entityBase = `${generalBackendBase}/entity`;
 
-const conductorBase = `http://8.141.159.53:12888/${baseUrl}:${conductorPort}/api`;
+const conductorBase = `${baseUrl}:${conductorPort}/api`;
 
 const servicesBackendBase = `${baseUrl}:${servicesBackendPort}/${version}`;
 export const interestRate = `${servicesBackendBase}/data/interestrate`;
@@ -81,8 +81,8 @@ export class EntityApi {
             baseURL: `${entityBase}/`,
             headers: {
                 Accept: 'application/json',
-                Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDkxMzI0MDIsImV4cCI6MTY0OTIxODgwMiwiYWNjb3VudCI6IjMyMzIzIn0.RMjSSJPmdtAzYgrBRItAvxSHPSt1PYCPz3mNCeP6G8E"
-            }
+                Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDkyNTEzMDIsImV4cCI6MTY0OTMzNzcwMiwiYWNjb3VudCI6ImFtYnJvc2UifQ.TNbp5O7W7uW4YuB_D0fF5CgzanSz3wd0eFTZ1RjlXcg"
+			}
 			// ,adapter: axiosAdapterUniapp
         });
     }
@@ -306,6 +306,8 @@ export class ConductorApi {
 
     // eslint-disable-next-line class-methods-use-this
     async getMetaDataWorkFlow(name) {
-        return axios.get(`${conductorBase}/metadata/workflow/${name}`);
+        return axios.create({
+            // adapter: axiosAdapterUniapp
+        }).get(`${conductorBase}/metadata/workflow/${name}`);
     }
 }
