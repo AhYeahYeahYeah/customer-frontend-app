@@ -29,7 +29,7 @@
 					</uni-forms-item>
 				</uni-forms>
 				<button type="default" @click="submit" style="background-color: #e57373;color: white;">注册</button>
-				<text class="link" @click="login" style="position: relative;top: 20rpx;left: 550rpx;">已有账号？</text>
+				<text class="link" @click="login" style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">已有账号？</text>
 			</view>
 		</uni-section>
 	

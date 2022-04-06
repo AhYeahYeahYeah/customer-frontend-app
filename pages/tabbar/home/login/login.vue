@@ -12,7 +12,7 @@
 					</uni-segmented-control>
 				</view> -->
 				<!-- 展示不同的排列方式 -->
-				<uni-forms ref="baseForm" :modelValue="formData" v-if="token.length === 0">
+				<uni-forms ref="baseForm" :modelValue="formData">
 					<uni-forms-item label="账户" required>
 						<uni-easyinput v-model="formData.account" placeholder="请输入账户" />
 					</uni-forms-item>
@@ -21,7 +21,7 @@
 					</uni-forms-item>
 				</uni-forms>
 				<button type="default" @click="submit" style="background-color: #e57373;color: white;" >登录</button>
-				<text class="link" @click="register" style="position: relative;top: 20rpx;left: 550rpx;">还未注册？</text>
+				<text class="link" @click="register" style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">还未注册？</text>
 			</view>
 		</uni-section>
 	
@@ -33,10 +33,11 @@
 <script>
 	import {AuthApi} from "../../../../api/restful.js";
 	import sha1 from "sha1";
+	import { Login } from "../../../../store/store.js";
 	export default {
 		data() {
 			return {
-				token: '',
+				// token: '',
 				formData: {
 					account: '',
 					password: ''
@@ -50,8 +51,10 @@
 			submit: function() {
 				// console.log(this.formData.account);
 				new AuthApi().customerLogin({ account: this.formData.account, password: sha1(this.formData.password)}).then((re) => {
-					// console.log(re.data);
-					this.token=re.data.token;
+					console.log(re);
+					// this.token=re.data.token;
+					Login.setToken(re.data.token);
+					console.log(Login.getToken())
 					uni.setStorageSync('token', re.data.token);
 					uni.setStorageSync('Customer', JSON.stringify(re.data.customer));
 					uni.navigateBack({ delta:2,

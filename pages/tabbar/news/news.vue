@@ -24,7 +24,7 @@
 
 		</view>
 		<!-- 刷新页面后的顶部提示框 -->
-		<view class="tips" :class="{ 'tips-ani': tipShow }">为您更新了10条最新新闻动态</view>
+		<!-- <view class="tips" :class="{ 'tips-ani': tipShow }">为您更新了10条最新新闻动态</view> -->
 		<!-- 		<unicloud-db ref="udb" v-slot:default="{data, loading, error, options}" :options="formData" :collection="collection"
 		 :field="field" @load="load"> -->
 		<!-- 基于 uni-list 的页面布局 -->
@@ -91,6 +91,9 @@
 			// 		this.formData.status = 'noMore'
 			// 	}
 			// }
+			confirm() {
+				
+			},
 		},
 		/**
 		 * 下拉刷新回调函数
