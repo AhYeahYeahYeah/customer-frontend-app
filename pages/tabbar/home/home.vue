@@ -108,6 +108,7 @@
 	} from "../../../api/restful.js";
 	import sha1 from "sha1";
 	import axios from "axios";
+	import { Login } from "../../../store/store.js";
 	export default {
 		data() {
 			return {
@@ -124,10 +125,13 @@
 		onLoad() {
 			// console.log(uni.getStorageSync('token'));
 			// console.log(uni.getStorageSync('Customer'));
-			this.token = uni.getStorageSync('token')
-			this.customer = JSON.parse(uni.getStorageSync('Customer'))
+			// this.token = uni.getStorageSync('token')
+			// this.customer = JSON.parse(uni.getStorageSync('Customer'))
+			uni.setStorageSync('token', 0)
 		},
 		onShow() {
+			// Auth.setToken(2);
+			// console.log(Auth.getToken())
 			uni.getLocation({
 				type: 'wgs84',
 				geocode: true,
@@ -147,8 +151,9 @@
 					)
 				}
 			});
-			this.token = uni.getStorageSync('token')
-			this.customer = JSON.parse(uni.getStorageSync('Customer'))
+			this.token = Login.getToken();
+			// console.log(this.token);
+			if (this.token !== 0) this.customer = JSON.parse(uni.getStorageSync('Customer'))
 			// console.log(this.customer.cname);
 		},
 		methods: {
@@ -178,7 +183,8 @@
 			},
 			logout: function() {
 				uni.clearStorage()
-				this.token = undefined
+				this.token = 0
+				Login.setToken(0)
 				// this.customer.cname=''
 			},
 			toServices: function() {
