@@ -67,7 +67,7 @@
 
 		},
 		{
-            "path" : "pages/znkf/znkf",
+            "path" : "pages/tabbar/customer-services/customer-services",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "智能客服",
