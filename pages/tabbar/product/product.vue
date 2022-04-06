@@ -142,7 +142,7 @@
 		display: flex-start;
 		flex-direction: row;
 		flex: 1;
-		background-color: #f8f8f8;
+		background-color: #ffffff;
 		height: 80rpx;
 		border-radius: 15px;
 		padding: 0 15px;
@@ -163,7 +163,7 @@
 		/* #endif */
 		padding: 0 5px;
 		font-size: 12px;
-		background-color: #f8f8f8;
+		background-color: #ffffff;
 	}
 
 	.input-uni-icon {
@@ -190,7 +190,7 @@
 		font-weight: 700;
 	}
 	.uni-media-list-text-bottom{
-		font-size: 10rpx;
+		font-size: 20rpx;
 	}
 	.search-button{
 		height: auto;
