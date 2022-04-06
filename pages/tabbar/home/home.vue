@@ -16,9 +16,6 @@
 			</view>
 
 		</view>
-		<!-- 		<uni-card :is-shadow="false" is-full>
-			<text class="uni-h6">登录</text>
-		</uni-card> -->
 		<view class="userInfo" @click.capture="toUserInfo">
 			<!-- <cloud-image width="150rpx" height="150rpx" v-if="userInfo.avatar_file&&userInfo.avatar_file.url" :src="userInfo.avatar_file.url"></cloud-image> -->
 			<image class="logo-img" v-if="!token" src="@/static/uni-center/grey.png">
@@ -46,9 +43,33 @@
 				</uni-grid-item>
 			</uni-grid>
 		</uni-card>
+
+		<uni-card style="border-radius: 40rpx;margin-top: 0rpx;padding: 15rpx;">
+
+			<template v-slot:title>
+				<uni-grid class="grid" :column="2" :showBorder="false" :square="true">
+					<uni-title type="h2" title="我的资产" style="margin-left: 15rpx;"></uni-title>
+					<text class="text" style="color: #0A98D5;margin-top: 30rpx;margin-right: 10rpx;"
+					@click="showAssest">查看资产</text>
+				</uni-grid>
+			</template>
+			<!-- <uni-title type="h2" title="我的资产" style="mar"></uni-title> -->
+			<text class="text">资产</text>
+			<text class="text">******</text>
+
+		</uni-card>
 		<uni-list class="center-list">
 			<uni-list-item :title="'设置'" :clickable="true" :show-extra-icon="true" link
 				:extraIcon="{type:'gear-filled',color:'#999'}">
+				<!-- <template v-slot:footer>
+					<view v-if="item.showBadge" class="item-footer">
+						<text class="item-footer-text">{{item.rightText}}</text>
+						<view class="item-footer-badge"></view>
+					</view>
+				</template> -->
+			</uni-list-item>
+			<uni-list-item :title="'隐私政策'" :clickable="true" :show-extra-icon="true" link
+				:extraIcon="{type:'paperclip',color:'#999'}">
 				<!-- <template v-slot:footer>
 					<view v-if="item.showBadge" class="item-footer">
 						<text class="item-footer-text">{{item.rightText}}</text>
@@ -67,17 +88,18 @@
 			</uni-list-item>
 		</uni-list>
 
-		<uni-list class="center-list">
+<!-- 		<uni-list class="center-list">
 			<uni-list-item :title="'退出'" :clickable="true" :show-extra-icon="true" link
-				:extraIcon="{type:'info-filled',color:'#999'}" v-on:click="logout">
+				:extraIcon="{type:'info-filled',color:'#999'}" v-on:click="logout"> -->
 				<!-- <template v-slot:footer>
 					<view v-if="item.showBadge" class="item-footer">
 						<text class="item-footer-text">{{item.rightText}}</text>
 						<view class="item-footer-badge"></view>
 					</view>
 				</template> -->
-			</uni-list-item>
-		</uni-list>
+<!-- 			</uni-list-item>
+		</uni-list> -->
+		<button v-if="token" type="default" @click="logout" style="margin-top: 30rpx;width: 700rpx;background-color: #e57373;color: white;" >退出</button>
 
 		<!-- 	<text v-if="token.length !== 0">
 			Hello!
@@ -108,7 +130,9 @@
 	} from "../../../api/restful.js";
 	import sha1 from "sha1";
 	import axios from "axios";
-	import { Login } from "../../../store/store.js";
+	import {
+		Login
+	} from "../../../store/store.js";
 	export default {
 		data() {
 			return {
@@ -198,6 +222,9 @@
 			},
 			confirm: function() {
 				console.log(123);
+			},
+			showAssest: function() {
+				console.log(123)
 			}
 		},
 	}
@@ -290,7 +317,7 @@
 	.center-list {
 		left: 30rpx;
 		width: 700rpx;
-		margin-top: 20rpx;
+		margin-top: 10rpx;
 		background-color: #f9f9f9;
 	}
 
