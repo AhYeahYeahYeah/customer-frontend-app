@@ -3,13 +3,24 @@
 		<view class="uni-form-item uni-column">
 			<view class="uni-input-wrapper">
 				<uni-icons type="search" size="28"></uni-icons>
-				<input class="uni-input" confirm-type="search" placeholder="请输入" />
-				<button class="search-button" type="primary">搜索</button>
+				<input class="uni-input" confirm-type="search" placeholder="请输入" @confirm="search"
+					@input="searchinputfunction" />
+				<button class="search-button" type="primary" v-on:click="search()">搜索</button>
 				<uni-icons custom-prefix="kefuicon" type="icon-kefu" size="30" v-on:click="openkf()"></uni-icons>
 			</view>
 		</view>
-		<view class="example-body">
-			<uni-combox :candidates="candidates" placeholder="请选择产品类型" v-model="city"></uni-combox>
+		<view class="uni-list">
+			<view class="uni-list-cell">
+				<view class="uni-list-cell-left"
+					style="{display:flex;padding-left: 50rpx;color: #929292;font-size: 33rpx;}">
+					产品类型
+				</view>
+				<view class="uni-list-cell-db" style="{display:flex;height: 70rpx;padding-left: 120rpx;}">
+					<picker @change="bindPickerChange" :value="index" :range="types">
+						<view class="uni-input">{{types[index]}}</view>
+					</picker>
+				</view>
+			</view>
 		</view>
 		<view class="content">
 			<view class="uni-list">
@@ -41,20 +52,55 @@
 	export default {
 		data() {
 			return {
-				products: []
+				products: [],
+				searchinput: "",
+				types: ['为您推荐', '通知存款', '定期存款', '活期存款', '大额存单'],
+				type: '',
+				index: 0
 			}
 		},
 		onLoad() {
 			uni.showLoading({
 				title: "加载中..."
 			})
-			new EntityApi().getProducts().then((res) => {
-				console.log(res);
-				this.products = res.data;
-				uni.hideLoading();
-			})
+			if (this.searchinput == "" || this.type == "" || this.type == '为您推荐') {
+				new EntityApi()
+					.getProducts().then((res) => {
+						this.products = res.data;
+						uni.hideLoading();
+					})
+			}
 		},
 		methods: {
+			bindPickerChange: function(e) {
+				this.index = e.detail.value
+				this.type=this.types[this.index]
+				uni.showLoading({
+					title: "加载中..."
+				})
+				if (this.type == '为您推荐') {
+					new EntityApi()
+						.getProducts().then((res) => {
+							this.products = res.data;
+							uni.hideLoading();
+						})
+				} else {
+					new EntityApi()
+						.getProducts().then((res) => {
+							const arr = [];
+							for (var i = 0; i < res.data.length; i++) {
+								if (this.fuzzyMatch(res.data[i].productName, this.type)) {
+									arr.splice(0, 0, res.data[i]);
+								}
+							}
+							this.products = arr;
+						})
+					uni.hideLoading();
+				}
+			},
+			searchinputfunction: function(event) {
+				this.searchinput = event.detail.value
+			},
 			productinfo(e) {
 				uni.navigateTo({
 					url: './productinfo/productinfo?pid=' + e
@@ -62,8 +108,58 @@
 			},
 			openkf() {
 				uni.navigateTo({
-					url:'../customer-services/customer-services'
+					url: '../customer-services/customer-services'
 				})
+			},
+			search: function(event) {
+				uni.showLoading({
+					title: "加载中..."
+				})
+				if (this.searchinput == "") {
+					new EntityApi()
+						.getProducts().then((res) => {
+							this.products = res.data;
+							uni.hideLoading();
+						})
+				} else {
+					new EntityApi()
+						.getProducts().then((res) => {
+							const arr = [];
+							for (var i = 0; i < res.data.length; i++) {
+								if (this.fuzzyMatch(res.data[i].productName, this.searchinput)) {
+									arr.splice(0, 0, res.data[i]);
+								}
+							}
+							this.products = arr;
+						})
+					uni.hideLoading();
+				}
+
+			},
+			fuzzyMatch(str, key) {
+				let index = -1,
+					flag = false;
+				for (var i = 0, arr = key.split(""); i < arr.length; i++) {
+					//有一个关键字都没匹配到，则没有匹配到数据
+					if (str.indexOf(arr[i]) < 0) {
+						break;
+					} else {
+						let match = str.matchAll(arr[i]);
+						let next = match.next();
+						while (!next.done) {
+							if (next.value.index > index) {
+								index = next.value.index;
+								if (i === arr.length - 1) {
+									flag = true
+								}
+								break;
+							}
+							next = match.next();
+						}
+
+					}
+				}
+				return flag
 			}
 
 		}

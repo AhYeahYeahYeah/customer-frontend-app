@@ -46,39 +46,42 @@
 				</view>
 				<view class="blank-line"></view>
 				<view class="uni-flex uni-column">
+					
 					<view class="uni-flex uni-row">
-						<view class="label-tip">
-							<label>填写个人信息</label>
-						</view>
-					</view>
-					<view class="uni-flex uni-row">
-						<view class="uni-form-item uni-column">
-							<view class="input-info">
-								<view class="uni-flex uni-row">
-									<label class="label-input-tip">买入金额</label>
+						<uni-card style="border-radius: 40rpx;margin-top: 15rpx;padding: 0rpx;">
+							<view class="uni-flex uni-row">
+								<view class="label-tip">
+									<label>填写信息</label>
 								</view>
-								<view class="uni-flex uni-row">
-									<label
-										style="{width: 300rpx; border: #000000; font-size: 75rpx;font-weight: 700;}">￥</label>
-									<input class="uni-input"
-										style="{width: 300rpx; border: #000000; font-size: 50rpx;font-weight: 700;}"
-										type="number" placeholder="请输入购买金额" @input="onKeyInputPayment" />
-								</view>
-								<view class="line-Box" />
-								<view class="uni-flex uni-row" v-show="phoneShow">
-									<label class="label-input-tip">手机号</label>
-								</view>
-								<input v-show="phoneShow" class="uni-input" type="number" placeholder="请输入手机号"
-									@input="onKeyInputPhoneNumber" />
-								<view v-show="phoneShow" class="line-Box1" />
-								<view class="uni-flex uni-row" v-show="passwordShow">
-									<label class="label-input-tip">密码</label>
-								</view>
-								<input v-show="passwordShow" class="uni-input" password type="text" placeholder="请输入密码"
-									@input="onKeyInputPassword" />
-								<view v-show="passwordShow" class="line-Box1" />
 							</view>
-						</view>
+							<view class="uni-form-item uni-column">
+								<view class="input-info">
+									<view class="uni-flex uni-row">
+										<label class="label-input-tip">买入金额</label>
+									</view>
+									<view class="uni-flex uni-row">
+										<label
+											style="{width: 300rpx; border: #000000; font-size: 75rpx;font-weight: 700;}">￥</label>
+										<input class="uni-input"
+											style="{width: 300rpx;background-color: #ebebeb; border: #000000; font-size: 50rpx;font-weight: 700;}"
+											type="number" placeholder="请输入购买金额" @input="onKeyInputPayment" />
+									</view>
+									<view class="line-Box" />
+									<view class="uni-flex uni-row" v-show="phoneShow">
+										<label class="label-input-tip">手机号</label>
+									</view>
+									<input v-show="phoneShow" class="uni-input" type="number" placeholder="请输入手机号"
+										@input="onKeyInputPhoneNumber" />
+									<view v-show="phoneShow" class="line-Box1" />
+									<view class="uni-flex uni-row" v-show="passwordShow">
+										<label class="label-input-tip">密码</label>
+									</view>
+									<input v-show="passwordShow" class="uni-input" password type="text"
+										placeholder="请输入密码" @input="onKeyInputPassword" />
+									<view v-show="passwordShow" class="line-Box1" />
+								</view>
+							</view>
+						</uni-card>
 					</view>
 
 				</view>
@@ -182,7 +185,7 @@
 					title: "正在生成订单..."
 				})
 				var orderResult = true;
-				var RusultMsg="";
+				var RusultMsg = "";
 				const date = new Date().getTime();
 				const orderData = {
 					pid: this.product[0].pid,
@@ -196,9 +199,9 @@
 				new EntityApi().addOrder(orderData).then((res) => {
 					if (res.status === 200) {
 						uni.connectSocket({
-						  url: `ws://conductor.rinne.top:10451/websocket/${res.data.msg}`
+							url: `ws://conductor.rinne.top:10451/websocket/${res.data.msg}`
 						});
-						uni.onSocketMessage(function (event) {
+						uni.onSocketMessage(function(event) {
 							if (event.data !== '连接成功') {
 								new ConductorApi().startQuery(event.data).then((re) => {
 									// console.log(re);
@@ -214,7 +217,8 @@
 										});
 										uni.hideLoading();
 										uni.navigateTo({
-											url: './orderResult?orderResult=' + orderResult+'&RusultMsg='+RusultMsg
+											url: './orderResult?orderResult=' +
+												orderResult + '&RusultMsg=' + RusultMsg
 										});
 									} else {
 										orderResult = false;
@@ -224,15 +228,15 @@
 											if (re.data.tasks[i].status !== 'COMPLETED') {
 												if (re.data.tasks[i].taskDefName.indexOf(
 														'Region') !== -1) {
-													RusultMsg="您所在的地域不符合条件！";
+													RusultMsg = "您所在的地域不符合条件！";
 												} else if (re.data.tasks[i].taskDefName.indexOf(
 														'Profile') !== -1) {
-													RusultMsg="您的手机号或者密码错误！";
+													RusultMsg = "您的手机号或者密码错误！";
 												} else if (re.data.tasks[i].taskDefName.indexOf(
 														'Credential') !== -1) {
-													RusultMsg="您的身份证号错误！";
+													RusultMsg = "您的身份证号错误！";
 												} else {
-													RusultMsg="您不在购买人群范围内！";
+													RusultMsg = "您不在购买人群范围内！";
 												}
 												break;
 											}
@@ -247,7 +251,8 @@
 										});
 										uni.hideLoading();
 										uni.navigateTo({
-											url: './orderResult?orderResult=' + orderResult+'&RusultMsg='+RusultMsg
+											url: './orderResult?orderResult=' +
+												orderResult + '&RusultMsg=' + RusultMsg
 										});
 									}
 								});
@@ -255,7 +260,7 @@
 						});
 					}
 				});
-				
+
 			}
 		}
 	}
@@ -265,7 +270,8 @@
 	.uni-row {
 		background-color: #FFFFFF;
 	}
-	.label-input-tip{
+
+	.label-input-tip {
 		padding-bottom: 30rpx;
 		font-size: 35rpx;
 		font-weight: 700;
@@ -273,7 +279,7 @@
 
 	.line-Box {
 		background-color: black;
-		width: 70%;
+		width: 100%;
 		height: 3rpx;
 		margin-top: 5rpx;
 		margin-right: 15rpx;
@@ -282,7 +288,7 @@
 
 	.line-Box1 {
 		background-color: black;
-		width: 90%;
+		width: 100%;
 		height: 3rpx;
 		margin-top: 5rpx;
 		margin-right: 15rpx;

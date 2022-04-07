@@ -4,7 +4,7 @@
 			<view class="input-view">
 				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
 				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
-					@confirm="search" />
+					@confirm="search" @input="searchinputfunction"/>
 			</view>
 			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
 				<image v-on:click="openkf()" src="../../../static/service.png" style="width: 50rpx;height: 50rpx;" />
@@ -68,17 +68,20 @@
 				interval: 2000,
 				duration: 500,
 				products: [],
+				searchinput:""
 			}
 		},
 		onLoad() {
 			uni.showLoading({
 				title: "加载中..."
 			})
-			new EntityApi()
-				.getProducts().then((res) => {
-					this.products = res.data.slice(0, 5);
-					uni.hideLoading();
-				})
+			if(this.searchinput==""){
+				new EntityApi()
+					.getProducts().then((res) => {
+						this.products = res.data.slice(0, 5);
+						uni.hideLoading();
+					})
+			}
 		},
 		onShow() {
 			uni.getLocation({
@@ -102,6 +105,9 @@
 			});
 		},
 		methods: {
+			searchinputfunction: function(event) {
+				this.searchinput = event.detail.value
+			},
 			productinfo(e) {
 				uni.navigateTo({
 					url: './productinfo/productinfo?pid=' + e
@@ -117,9 +123,56 @@
 					url:'../customer-services/customer-services'
 				})
 			},
-			search(){
+			search: function(event) {
+				uni.showLoading({
+					title: "加载中..."
+				})
+				if(event.detail.value==""){
+					new EntityApi()
+						.getProducts().then((res) => {
+							this.products = res.data.slice(0, 5);
+							uni.hideLoading();
+						})
+				}else{
+					new EntityApi()
+						.getProducts().then((res) => {
+							const arr = [];
+							for(var i=0;i<res.data.length;i++){
+								if(this.fuzzyMatch(res.data[i].productName,event.detail.value)){
+									arr.splice(0, 0, res.data[i]);
+								}
+							}
+							this.products=arr;
+						})
+					uni.hideLoading();
+				}
 				
+			},
+			fuzzyMatch(str, key){
+			    let index = -1, flag = false;
+			    for(var i = 0, arr = key.split(""); i < arr.length; i++ ){
+			        //有一个关键字都没匹配到，则没有匹配到数据
+			        if(str.indexOf(arr[i]) < 0){
+			            break;
+			        }else{
+			            let match = str.matchAll(arr[i]);
+			            let next = match.next();
+			            while (!next.done){
+			                if(next.value.index > index){
+			                    index = next.value.index;
+			                    if(i === arr.length - 1){
+			                        flag = true
+			                    }
+			                    break;
+			                }
+			                next = match.next();
+			            }
+			
+			        }
+			    }
+			    return flag
 			}
+			
 			
 		}
 	}
