@@ -75,7 +75,7 @@
 			uni.showLoading({
 				title: "加载中..."
 			})
-			new EntityApi().getProduct(e.pid).then((res) => {
+			new EntityApi("pass").getProduct(e.pid).then((res) => {
 				this.product = res.data;
 				this.productName = this.product[0].productName;
 				this.validityPeriod = this.product[0].validityPeriod;
@@ -125,7 +125,7 @@
 					})
 				}else{
 					var cid = JSON.parse(uni.getStorageSync('Customer')).cid;
-					new EntityApi().getCustomerProfile(cid).then((res) => {
+					new EntityApi("pass").getCustomerProfile(cid).then((res) => {
 						if (res.data[0].sid === '' ||
 							res.data[0].phoneNum === '' ||
 							res.data[0].address === '' ||

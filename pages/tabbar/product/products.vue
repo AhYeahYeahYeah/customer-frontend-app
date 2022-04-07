@@ -64,7 +64,7 @@
 				title: "加载中..."
 			})
 			if (this.searchinput == "" || this.type == "" || this.type == '为您推荐') {
-				new EntityApi()
+				new EntityApi("pass")
 					.getProducts().then((res) => {
 						this.products = res.data;
 						uni.hideLoading();
@@ -79,13 +79,13 @@
 					title: "加载中..."
 				})
 				if (this.type == '为您推荐') {
-					new EntityApi()
+					new EntityApi("pass")
 						.getProducts().then((res) => {
 							this.products = res.data;
 							uni.hideLoading();
 						})
 				} else {
-					new EntityApi()
+					new EntityApi("pass")
 						.getProducts().then((res) => {
 							const arr = [];
 							for (var i = 0; i < res.data.length; i++) {
@@ -116,13 +116,13 @@
 					title: "加载中..."
 				})
 				if (this.searchinput == "") {
-					new EntityApi()
+					new EntityApi("pass")
 						.getProducts().then((res) => {
 							this.products = res.data;
 							uni.hideLoading();
 						})
 				} else {
-					new EntityApi()
+					new EntityApi("pass")
 						.getProducts().then((res) => {
 							const arr = [];
 							for (var i = 0; i < res.data.length; i++) {

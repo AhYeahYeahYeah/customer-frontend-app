@@ -76,7 +76,7 @@
 				title: "加载中..."
 			})
 			if(this.searchinput==""){
-				new EntityApi()
+				new EntityApi("pass")
 					.getProducts().then((res) => {
 						this.products = res.data.slice(0, 5);
 						uni.hideLoading();
@@ -128,13 +128,13 @@
 					title: "加载中..."
 				})
 				if(event.detail.value==""){
-					new EntityApi()
+					new EntityApi("pass")
 						.getProducts().then((res) => {
 							this.products = res.data.slice(0, 5);
 							uni.hideLoading();
 						})
 				}else{
-					new EntityApi()
+					new EntityApi("pass")
 						.getProducts().then((res) => {
 							const arr = [];
 							for(var i=0;i<res.data.length;i++){
