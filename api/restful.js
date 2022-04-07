@@ -10,7 +10,7 @@ const version = 'v1';
 const generalBackendBase = `${baseUrl}:${generalBackendPort}/${version}`;
 const authBase = `${generalBackendBase}/auth`;
 const entityBase = `${generalBackendBase}/entity`;
-
+const robotUrl = 'https://aip.baidubce.com/rpc/2.0/unit/service/v3';
 const conductorBase = `${baseUrl}:${conductorPort}/api`;
 
 const servicesBackendBase = `${baseUrl}:${servicesBackendPort}/${version}`;
@@ -318,7 +318,7 @@ export class ConductorApi {
 			adapter: axiosAdapterUniapp
 			// #endif
 		}).post(`${conductorBase}/metadata/workflow`, JSON.parse(workflow));
-
+		
 	// eslint-disable-next-line class-methods-use-this
 	async getMetaDataWorkFlow(name) {
 		return axios.create({
@@ -327,4 +327,19 @@ export class ConductorApi {
 			// #endif
 		}).get(`${conductorBase}/metadata/workflow/${name}`);
 	}
+}
+
+export class RobotApi {
+    constructor() {
+        this.instance = axios.create({
+            baseURL: `${robotUrl}/`,
+            // timeout: 1050,
+            headers: { Accept: 'application/json' },
+			adapter: axiosAdapterUniapp
+        });
+    }
+
+    async sendMsg(data) {
+        return this.instance.post('/chat?access_token=24.2fa0f9c1715de922b9ae0e0657735499.2592000.1651908606.282335-25826498', data);
+    }
 }
