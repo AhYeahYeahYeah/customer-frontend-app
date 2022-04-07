@@ -50,7 +50,7 @@
 				<uni-grid class="grid" :column="2" :showBorder="false" :square="true">
 					<uni-title type="h2" title="我的资产" style="margin-left: 15rpx;"></uni-title>
 					<text class="text" style="color: #0A98D5;margin-top: 30rpx;margin-right: 10rpx;"
-					@click="showAssest">查看资产</text>
+					@click="showAsset">查看资产</text>
 				</uni-grid>
 			</template>
 			<!-- <uni-title type="h2" title="我的资产" style="mar"></uni-title> -->
@@ -223,7 +223,7 @@
 			confirm: function() {
 				console.log(123);
 			},
-			showAssest: function() {
+			showAsset: function() {
 				console.log(123)
 			}
 		},
