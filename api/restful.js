@@ -85,8 +85,7 @@ export class EntityApi {
 			baseURL: `${entityBase}/`,
 			headers: {
 				Accept: 'application/json',
-				// Authorization: token
-				Authorization: "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDkzMTk5NDcsImV4cCI6MTY0OTQwNjM0NywiYWNjb3VudCI6ImNtdGVzdCJ9.C_uSsYuVjc8pi4s_rgbWivQ4cUznry2pP6ZI9N5nKRc"
+				Authorization: token
 			},
 			// #ifdef APP
 			adapter: axiosAdapterUniapp
