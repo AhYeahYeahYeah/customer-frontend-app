@@ -104,7 +104,7 @@
 		methods: {
 			productinfo(e) {
 				uni.navigateTo({
-					url: '../productinfo/productinfo?pid=' + e
+					url: './productinfo/productinfo?pid=' + e
 				})
 			},
 			moreProducts() {
@@ -114,7 +114,7 @@
 			},
 			openkf() {
 				uni.navigateTo({
-
+					url:'../customer-services/customer-services'
 				})
 			}
 		}

@@ -48,7 +48,7 @@
 <script>
 	import {
 		EntityApi
-	} from "../../../api/restful.js";
+	} from "../../../../api/restful.js";
 	export default {
 		data() {
 			return {

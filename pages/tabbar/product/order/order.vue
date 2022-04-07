@@ -82,7 +82,7 @@
 	import {
 		EntityApi,
 		ConductorApi
-	} from "../../../api/restful.js";
+	} from "../../../../api/restful.js";
 	export default {
 		data() {
 			return {

@@ -59,7 +59,7 @@
 		}
 
 		, {
-			"path": "pages/tabbar/productinfo/productinfo",
+			"path": "pages/tabbar/product/productinfo/productinfo",
 			"style": {
 				"navigationBarTitleText": "产品详情",
 				"enablePullDownRefresh": false
@@ -76,7 +76,7 @@
             
         }
 	    ,{
-            "path" : "pages/tabbar/order/order",
+            "path" : "pages/tabbar/product/order/order",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "确认订单",
@@ -85,7 +85,7 @@
             
         }
 		,{
-		    "path" : "pages/tabbar/order/orderResult",
+		    "path" : "pages/tabbar/product/order/orderResult",
 		    "style" :                                                                                    
 		    {
 		        "navigationBarTitleText": "订单结果",

@@ -45,7 +45,7 @@
 		methods: {
 			goto_Home() {
 				uni.switchTab({
-					url: '../product/product'
+					url: '../product'
 				});
 			}
 		}

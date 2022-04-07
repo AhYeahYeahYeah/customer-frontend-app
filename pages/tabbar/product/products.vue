@@ -57,7 +57,7 @@
 		methods: {
 			productinfo(e) {
 				uni.navigateTo({
-					url: '../productinfo/productinfo?pid=' + e
+					url: './productinfo/productinfo?pid=' + e
 				})
 			}
 
