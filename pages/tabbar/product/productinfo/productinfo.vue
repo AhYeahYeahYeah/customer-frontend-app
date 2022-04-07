@@ -49,6 +49,9 @@
 	import {
 		EntityApi
 	} from "../../../../api/restful.js";
+	import {
+		Login
+	} from "../../../../store/store.js";
 	export default {
 		data() {
 			return {
@@ -63,7 +66,8 @@
 				singleDayLimit: 0,
 				riskLevel: "空",
 				riskcolor: "#09BB07",
-				settlementMethod: "空"
+				settlementMethod: "空",
+				
 
 			}
 		},
@@ -114,29 +118,35 @@
 		},
 		methods: {
 			buy() {
-				var cid = "cec3092a-6faa-42d8-8977-45128f518615";
-				new EntityApi().getCustomerProfile(cid).then((res) => {
-					if (res.data[0].sid === '' ||
-						res.data[0].phoneNum === '' ||
-						res.data[0].address === '' ||
-						res.data[0].cardNum === '' ||
-						res.data[0].birthday === '' ||
-						res.data[0].sid === null ||
-						res.data[0].phoneNum === null ||
-						res.data[0].address === null ||
-						res.data[0].cardNum === null ||
-						res.data[0].birthday === null) {
-						uni.showToast({
-							title: "请完善个人信息后购买",
-							icon: "error"
-						})
-					} else {
-						uni.navigateTo({
-							url: '../order/order?pid=' + this.product[0].pid
-						})
-					}
-				})
-
+				if(Login.getToken()==0){
+					uni.showToast({
+						title: "请登录后购买",
+						icon: "error"
+					})
+				}else{
+					var cid = JSON.parse(uni.getStorageSync('Customer')).cid;
+					new EntityApi().getCustomerProfile(cid).then((res) => {
+						if (res.data[0].sid === '' ||
+							res.data[0].phoneNum === '' ||
+							res.data[0].address === '' ||
+							res.data[0].cardNum === '' ||
+							res.data[0].birthday === '' ||
+							res.data[0].sid === null ||
+							res.data[0].phoneNum === null ||
+							res.data[0].address === null ||
+							res.data[0].cardNum === null ||
+							res.data[0].birthday === null) {
+							uni.showToast({
+								title: "请完善个人信息后购买",
+								icon: "error"
+							})
+						} else {
+							uni.navigateTo({
+								url: '../order/order?pid=' + this.product[0].pid
+							})
+						}
+					})
+				}
 			}
 
 		}
@@ -220,13 +230,13 @@
 
 	.label-riskLevel {
 		padding: 50rpx;
-		padding-left: 80rpx;
+		padding-left: 75rpx;
 		font-size: 35rpx;
 	}
 
 	.label-settlementMethod {
 		padding: 50rpx;
-		padding-left: 80rpx;
+		padding-left: 75rpx;
 		font-size: 35rpx;
 	}
 </style>

@@ -59,6 +59,11 @@
 				uni.navigateTo({
 					url: './productinfo/productinfo?pid=' + e
 				})
+			},
+			openkf() {
+				uni.navigateTo({
+					url:'../customer-services/customer-services'
+				})
 			}
 
 		}
