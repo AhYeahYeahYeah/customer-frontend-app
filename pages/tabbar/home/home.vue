@@ -50,7 +50,7 @@
 				<uni-grid class="grid" :column="2" :showBorder="false" :square="true">
 					<uni-title type="h2" title="我的资产" style="margin-left: 15rpx;"></uni-title>
 					<text class="text" style="color: #0A98D5;margin-top: 30rpx;margin-right: 10rpx;"
-					@click="showAsset">查看资产</text>
+					@tap="showAsset">查看资产</text>
 				</uni-grid>
 			</template>
 			<!-- <uni-title type="h2" title="我的资产" style="mar"></uni-title> -->
@@ -99,7 +99,7 @@
 				</template> -->
 <!-- 			</uni-list-item>
 		</uni-list> -->
-		<button v-if="token" type="default" @click="logout" style="margin-top: 30rpx;width: 700rpx;background-color: #e57373;color: white;" >退出</button>
+		<button v-if="token" type="default" @tap="logout" style="margin-top: 30rpx;width: 700rpx;background-color: #e57373;color: white;" >退出</button>
 
 		<!-- 	<text v-if="token.length !== 0">
 			Hello!
