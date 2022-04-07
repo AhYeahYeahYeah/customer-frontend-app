@@ -20,8 +20,8 @@
 						<uni-easyinput v-model="formData.password" type="password" placeholder="请输入密码" />
 					</uni-forms-item>
 				</uni-forms>
-				<button type="default" @click="submit" style="background-color: #e57373;color: white;" >登录</button>
-				<text class="link" @click="register" style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">还未注册？</text>
+				<button type="default" @tap="submit" style="background-color: #e57373;color: white;" >登录</button>
+				<text class="link" @tap="register" style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">还未注册？</text>
 			</view>
 		</uni-section>
 	
