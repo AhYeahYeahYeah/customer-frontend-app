@@ -90,15 +90,6 @@
 			uni.showLoading({
 				title: "加载中..."
 			})
-			if (this.searchinput == "") {
-				new EntityApi("pass")
-					.getProducts().then((res) => {
-						this.products = res.data.slice(0, 5);
-						uni.hideLoading();
-					})
-			}
-		},
-		onShow() {
 			uni.getLocation({
 				type: 'wgs84',
 				geocode: true,
@@ -114,11 +105,41 @@
 							let addressList = address.match(reg).toString().split(",");
 							console.log(addressList[1], '位置信息')
 							this.location = addressList[1]
+							uni.setStorageSync('location', this.location)
+							if (this.searchinput == "") {
+								new EntityApi("pass")
+									.getProducts().then((res) => {
+										this.products = res.data.slice(0, 5);
+										uni.hideLoading();
+									})
+							}
 						}
 					)
 				}
 			});
+			
 		},
+		// onShow() {
+		// 	uni.getLocation({
+		// 		type: 'wgs84',
+		// 		geocode: true,
+		// 		success: (res) => {
+		// 			let point = new plus.maps.Point(res.longitude, res.latitude);
+		// 			plus.maps.Map.reverseGeocode(
+		// 				point, {},
+		// 				(event) => {
+		// 					let address = event.address; // 转换后的地理位置
+		// 					let point = event.coord; // 转换后的坐标信息
+		// 					let coordType = event.coordType; // 转换后的坐标系类型
+		// 					let reg = /.+?(省|市|自治区|自治州|县|区)/g;
+		// 					let addressList = address.match(reg).toString().split(",");
+		// 					console.log(addressList[1], '位置信息')
+		// 					this.location = addressList[1]
+		// 				}
+		// 			)
+		// 		}
+		// 	});
+		// },
 		methods: {
 			searchinputfunction: function(event) {
 				this.searchinput = event.detail.value
