@@ -93,6 +93,15 @@
 		    }
 		    
 		}
+        ,{
+            "path" : "pages/tabbar/home/useInfo/useInfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],       
 	"tabBar": {
 		"color": "#7A7E83",
