@@ -59,13 +59,14 @@
 										style="{width: 300rpx; border: #000000; font-size: 75rpx;font-weight: 700;}">￥</label>
 									<input class="uni-input"
 										style="{width: 300rpx; border: #000000; font-size: 50rpx;font-weight: 700;}"
-										type="number" placeholder="请输入购买金额" />
+										type="number" placeholder="请输入购买金额" @input="onKeyInputPayment" />
 								</view>
 								<view class="line-Box" />
-								<input v-show="phoneShow" class="uni-input" type="number" placeholder="请输入手机号" />
+								<input v-show="phoneShow" class="uni-input" type="number" placeholder="请输入手机号"
+									@input="onKeyInputPhoneNumber" />
 								<view v-show="phoneShow" class="line-Box1" />
-								<input v-show="passwordShow" class="uni-input" password type="text"
-									placeholder="请输入密码" />
+								<input v-show="passwordShow" class="uni-input" password type="text" placeholder="请输入密码"
+									@input="onKeyInputPassword" />
 								<view v-show="passwordShow" class="line-Box1" />
 							</view>
 						</view>
@@ -83,6 +84,7 @@
 		EntityApi,
 		ConductorApi
 	} from "../../../../api/restful.js";
+	import sha1 from "sha1";
 	export default {
 		data() {
 			return {
@@ -98,7 +100,12 @@
 				riskLevel: "空",
 				settlementMethod: "空",
 				phoneShow: false,
-				passwordShow: false
+				passwordShow: false,
+				payment: 0,
+				phoneNum: "",
+				password: ""
+
+
 			}
 		},
 		onLoad: function(e) {
@@ -152,15 +159,94 @@
 			})
 		},
 		methods: {
+			onKeyInputPayment: function(event) {
+				this.payment = event.detail.value
+			},
+			onKeyInputPhoneNumber: function(event) {
+				this.phoneNum = event.detail.value
+			},
+			onKeyInputPassword: function(event) {
+				this.password = event.detail.value
+			},
 			confirm() {
 				uni.showLoading({
 					title: "正在生成订单..."
 				})
-				var orderResult=true;
-				uni.hideLoading();
-				uni.navigateTo({
-					url: './orderResult?orderResult='+orderResult
-				})
+				var orderResult = true;
+				var RusultMsg="";
+				const date = new Date().getTime();
+				const orderData = {
+					pid: this.product[0].pid,
+					cid: JSON.parse(uni.getStorageSync('Customer')).cid,
+					payment: this.payment,
+					orderDate: date,
+					expireDate: date + Number(this.product[0].validityPeriod) * 86400000,
+					phoneNum: this.phoneNum,
+					password: sha1(this.password)
+				};
+				new EntityApi().addOrder(orderData).then((res) => {
+					if (res.status === 200) {
+						uni.connectSocket({
+						  url: `ws://conductor.rinne.top:10451/websocket/${res.data.msg}`
+						});
+						uni.onSocketMessage(function (event) {
+							if (event.data !== '连接成功') {
+								new ConductorApi().startQuery(event.data).then((re) => {
+									// console.log(re);
+									if (re.data.status === 'COMPLETED') {
+										orderResult = true;
+										new EntityApi().updateOrder({
+											oid: res.data.msg,
+											workflowId: event.data,
+											status: 1
+										}).then((r) => {
+											console.log(r);
+											uni.closeSocket();
+										});
+										uni.hideLoading();
+										uni.navigateTo({
+											url: './orderResult?orderResult=' + orderResult+'&RusultMsg='+RusultMsg
+										});
+									} else {
+										orderResult = false;
+										// console.log(re.data.tasks);
+										// eslint-disable-next-line no-plusplus
+										for (let i = 0; i < re.data.tasks.length; i++) {
+											if (re.data.tasks[i].status !== 'COMPLETED') {
+												if (re.data.tasks[i].taskDefName.indexOf(
+														'Region') !== -1) {
+													RusultMsg="您所在的地域不符合条件！";
+												} else if (re.data.tasks[i].taskDefName.indexOf(
+														'Profile') !== -1) {
+													RusultMsg="您的手机号或者密码错误！";
+												} else if (re.data.tasks[i].taskDefName.indexOf(
+														'Credential') !== -1) {
+													RusultMsg="您的身份证号错误！";
+												} else {
+													RusultMsg="您不在购买人群范围内！";
+												}
+												break;
+											}
+										}
+										new EntityApi().updateOrder({
+											oid: res.data.msg,
+											workflowId: event.data,
+											status: 2
+										}).then((r) => {
+											console.log(r);
+											uni.closeSocket();
+										});
+										uni.hideLoading();
+										uni.navigateTo({
+											url: './orderResult?orderResult=' + orderResult+'&RusultMsg='+RusultMsg
+										});
+									}
+								});
+							}
+						});
+					}
+				});
+				
 			}
 		}
 	}

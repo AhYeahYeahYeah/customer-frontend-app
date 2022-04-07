@@ -8,7 +8,7 @@
 		<view class="view_iconText" v-show="fail">
 			<icon type="cancel" size="100" color="#ff0000" />
 			<text class="text_title">购买失败</text>
-			<text class="text_content">购买失败！请点击返回首页。</text>
+			<text class="text_content">购买失败！{{RusultMsg}}请点击返回首页。</text>
 		</view>
 		<button class="button_gotohome" @tap="goto_Home">返回首页</button>
 	</view>
@@ -19,13 +19,15 @@
 		data() {
 			return {
 				success:true,
-				fail:false
+				fail:false,
+				RusultMsg:""
 			}
 		},
 		onLoad: function(e) {
 			uni.showLoading({
 				title: "加载中..."
 			})
+			this.RusultMsg=e.RusultMsg;
 			if(e.orderResult=="true"){
 				this.success=true;
 				this.fail=false;
@@ -35,7 +37,6 @@
 				this.fail=true;
 				uni.hideLoading();
 			}
-			console.log(this.success)
 			
 		},
 		onBackPress() {

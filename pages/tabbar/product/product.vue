@@ -4,7 +4,7 @@
 			<view class="input-view">
 				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
 				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
-					@confirm="confirm" />
+					@confirm="search" />
 			</view>
 			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
 				<image v-on:click="openkf()" src="../../../static/service.png" style="width: 50rpx;height: 50rpx;" />
@@ -76,7 +76,7 @@
 			})
 			new EntityApi()
 				.getProducts().then((res) => {
-					this.products = res.data.slice(0, 3);
+					this.products = res.data.slice(0, 5);
 					uni.hideLoading();
 				})
 		},
@@ -116,7 +116,11 @@
 				uni.navigateTo({
 					url:'../customer-services/customer-services'
 				})
+			},
+			search(){
+				
 			}
+			
 		}
 	}
 </script>
@@ -178,18 +182,18 @@
 	}
 
 	.swiper {
-		height: 300rpx;
+		height: 400rpx;
 	}
 
 	.swiper-item {
 		display: block;
-		height: 300rpx;
+		height: 400rpx;
 		line-height: 300rpx;
 		text-align: center;
 	}
 
 	.wrap-image {
-		height: 300rpx;
+		height: 400rpx;
 		width: 690rpx;
 		width: 100%;
 	}

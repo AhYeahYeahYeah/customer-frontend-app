@@ -98,7 +98,7 @@
 	}
 
 	.uni-media-list-text-bottom {
-		font-size: 10rpx;
+		font-size: 20rpx;
 	}
 
 	.search-button {
