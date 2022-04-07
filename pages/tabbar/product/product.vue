@@ -31,10 +31,24 @@
 					</swiper-item>
 				</swiper>
 			</view>
-			<view style="{height: 60rpx;}" v-on:click="moreProducts()">
+			<!-- 			<view style="{height: 60rpx;}" v-on:click="moreProducts()">
 				<label
 					style="{display:flex;padding-left: 20rpx;font-weight: 700;font-size: 40rpx;height: 60rpx;}">为您推荐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></label>
-			</view>
+			</view> -->
+			<uni-list style="height:130rpx;">
+				<uni-list-item :clickable="true" :show-extra-icon="true" link
+					:extraIcon="{type:'paperplane',color:'#999', size: 25}" @click="moreProducts"
+					style="margin-top: 0rpx;"
+					>
+					<uni-title slot="body" type="h2" title="为您推荐"></uni-title>
+					<!-- <template v-slot:footer>
+						<view v-if="item.showBadge" class="item-footer">
+							<text class="item-footer-text">{{item.rightText}}</text>
+							<view class="item-footer-badge"></view>
+						</view>
+					</template> -->
+				</uni-list-item>
+			</uni-list>
 			<view class="uni-list">
 				<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in products"
 					:key="index" v-on:click="productinfo(item.pid)">

@@ -1,5 +1,12 @@
 {
-	"pages": [{
+	"pages": [
+		{
+			"path": "pages/tabbar/product/product",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/tabbar/home/home",
 			"style": {
 				"navigationStyle": "custom"
@@ -28,12 +35,6 @@
 		    }
 		    
 
-		},
-		{
-			"path": "pages/tabbar/product/product",
-			"style": {
-				"navigationStyle": "custom"
-			}
 		},
 		{
 			"path": "pages/tabbar/news/news",
