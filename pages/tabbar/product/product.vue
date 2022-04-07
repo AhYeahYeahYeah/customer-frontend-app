@@ -3,8 +3,8 @@
 		<view class="navBar">
 			<view class="input-view">
 				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
-				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
-					@confirm="search" @input="searchinputfunction"/>
+				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词" @confirm="search"
+					@input="searchinputfunction" />
 			</view>
 			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
 				<image v-on:click="openkf()" src="../../../static/service.png" style="width: 50rpx;height: 50rpx;" />
@@ -21,13 +21,13 @@
 				<swiper class="swiper" circular :indicator-dots="indicatorDots" :autoplay="autoplay"
 					:interval="interval" :duration="duration">
 					<swiper-item>
-						<image class="wrap-image" src="../../../static/c1.png" mode=""></image>
+						<image class="wrap-image" src="../../../static/s1.png" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image class="wrap-image" src="../../../static/c2.png" mode=""></image>
+						<image class="wrap-image" src="../../../static/s2.png" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image class="wrap-image" src="../../../static/c3.png" mode=""></image>
+						<image class="wrap-image" src="../../../static/s3.png" mode=""></image>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -49,7 +49,7 @@
 				</view>
 			</view>
 			<view class="button-sp-area">
-				<button class="more-button" type="primary" plain="true" v-on:click="moreProducts()">更多</button>
+				<button style="{display: flex;width: 400rpx;}" class="more-button" type="primary" plain="true" v-on:click="moreProducts()">更多</button>
 			</view>
 		</view>
 	</view>
@@ -68,14 +68,14 @@
 				interval: 2000,
 				duration: 500,
 				products: [],
-				searchinput:""
+				searchinput: ""
 			}
 		},
 		onLoad() {
 			uni.showLoading({
 				title: "加载中..."
 			})
-			if(this.searchinput==""){
+			if (this.searchinput == "") {
 				new EntityApi("pass")
 					.getProducts().then((res) => {
 						this.products = res.data.slice(0, 5);
@@ -120,60 +120,61 @@
 			},
 			openkf() {
 				uni.navigateTo({
-					url:'../customer-services/customer-services'
+					url: '../customer-services/customer-services'
 				})
 			},
 			search: function(event) {
 				uni.showLoading({
 					title: "加载中..."
 				})
-				if(event.detail.value==""){
+				if (event.detail.value == "") {
 					new EntityApi("pass")
 						.getProducts().then((res) => {
 							this.products = res.data.slice(0, 5);
 							uni.hideLoading();
 						})
-				}else{
+				} else {
 					new EntityApi("pass")
 						.getProducts().then((res) => {
 							const arr = [];
-							for(var i=0;i<res.data.length;i++){
-								if(this.fuzzyMatch(res.data[i].productName,event.detail.value)){
+							for (var i = 0; i < res.data.length; i++) {
+								if (this.fuzzyMatch(res.data[i].productName, event.detail.value)) {
 									arr.splice(0, 0, res.data[i]);
 								}
 							}
-							this.products=arr;
+							this.products = arr;
 						})
 					uni.hideLoading();
 				}
-				
+
 			},
-			fuzzyMatch(str, key){
-			    let index = -1, flag = false;
-			    for(var i = 0, arr = key.split(""); i < arr.length; i++ ){
-			        //有一个关键字都没匹配到，则没有匹配到数据
-			        if(str.indexOf(arr[i]) < 0){
-			            break;
-			        }else{
-			            let match = str.matchAll(arr[i]);
-			            let next = match.next();
-			            while (!next.done){
-			                if(next.value.index > index){
-			                    index = next.value.index;
-			                    if(i === arr.length - 1){
-			                        flag = true
-			                    }
-			                    break;
-			                }
-			                next = match.next();
-			            }
-			
-			        }
-			    }
-			    return flag
+			fuzzyMatch(str, key) {
+				let index = -1,
+					flag = false;
+				for (var i = 0, arr = key.split(""); i < arr.length; i++) {
+					//有一个关键字都没匹配到，则没有匹配到数据
+					if (str.indexOf(arr[i]) < 0) {
+						break;
+					} else {
+						let match = str.matchAll(arr[i]);
+						let next = match.next();
+						while (!next.done) {
+							if (next.value.index > index) {
+								index = next.value.index;
+								if (i === arr.length - 1) {
+									flag = true
+								}
+								break;
+							}
+							next = match.next();
+						}
+
+					}
+				}
+				return flag
 			}
-			
-			
+
+
 		}
 	}
 </script>
@@ -233,7 +234,6 @@
 		width: 690rpx;
 		width: 100%;
 	}
-
 	.swiper {
 		height: 400rpx;
 	}
@@ -280,11 +280,6 @@
 		font-size: 20rpx;
 	}
 
-	.search-button {
-		height: auto;
-		width: auto;
-		font-size: 33upx;
-	}
 
 	.button-sp-area {
 		margin: 0 auto;
