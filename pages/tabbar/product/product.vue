@@ -31,6 +31,10 @@
 					</swiper-item>
 				</swiper>
 			</view>
+			<view style="{height: 60rpx;}" v-on:click="moreProducts()">
+				<label
+					style="{display:flex;padding-left: 20rpx;font-weight: 700;font-size: 40rpx;height: 60rpx;}">为您推荐&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></label>
+			</view>
 			<view class="uni-list">
 				<view class="uni-list-cell" hover-class="uni-list-cell-hover" v-for="(item,index) in products"
 					:key="index" v-on:click="productinfo(item.pid)">
@@ -47,9 +51,6 @@
 						</view>
 					</view>
 				</view>
-			</view>
-			<view class="button-sp-area">
-				<button style="{display: flex;width: 400rpx;}" class="more-button" type="primary" plain="true" v-on:click="moreProducts()">更多</button>
 			</view>
 		</view>
 	</view>
@@ -234,6 +235,7 @@
 		width: 690rpx;
 		width: 100%;
 	}
+
 	.swiper {
 		height: 400rpx;
 	}
@@ -281,10 +283,7 @@
 	}
 
 
-	.button-sp-area {
-		margin: 0 auto;
-		width: 60%;
-	}
+
 
 	.uni-input-wrapper {
 		/* #ifndef APP-NVUE */
