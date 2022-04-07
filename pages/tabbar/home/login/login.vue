@@ -1,12 +1,13 @@
 <template>
 	<view class="container">
-<!-- 		<uni-card :is-shadow="false" is-full>
+		<!-- 		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">登录</text>
 		</uni-card> -->
-			<image src="../../../../static/logo.png" mode="aspectFit" style="left: 130rpx; width: 500rpx; height: 200rpx;"></image>
-			<uni-section title="登录" type="line" style="background-color: inherit;">
+		<image src="../../../../static/logo.png" mode="aspectFit" style="left: 130rpx; width: 500rpx; height: 200rpx;">
+		</image>
+		<uni-section title="登录" type="line" style="background-color: inherit;">
 			<view class="example">
-			<!-- 	<view class="segmented-control">
+				<!-- 	<view class="segmented-control">
 					<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem"
 						styleType="button">
 					</uni-segmented-control>
@@ -20,20 +21,25 @@
 						<uni-easyinput v-model="formData.password" type="password" placeholder="请输入密码" />
 					</uni-forms-item>
 				</uni-forms>
-				<button type="default" @tap="submit" style="background-color: #e57373;color: white;" >登录</button>
-				<text class="link" @tap="register" style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">还未注册？</text>
+				<button type="default" @tap="submit" style="background-color: #e57373;color: white;">登录</button>
+				<text class="link" @tap="register"
+					style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">还未注册？</text>
 			</view>
 		</uni-section>
-	
+
 
 
 	</view>
 </template>
 
 <script>
-	import {AuthApi} from "../../../../api/restful.js";
+	import {
+		AuthApi
+	} from "../../../../api/restful.js";
 	import sha1 from "sha1";
-	import { Login } from "../../../../store/store.js";
+	import {
+		Login
+	} from "../../../../store/store.js";
 	export default {
 		data() {
 			return {
@@ -50,21 +56,34 @@
 		methods: {
 			submit: function() {
 				// console.log(this.formData.account);
-				new AuthApi().customerLogin({ account: this.formData.account, password: sha1(this.formData.password)}).then((re) => {
+				new AuthApi().customerLogin({
+					account: this.formData.account,
+					password: sha1(this.formData.password)
+				}).then((re) => {
 					console.log(re);
 					// this.token=re.data.token;
-					Login.setToken(re.data.token);
-					console.log(Login.getToken())
-					uni.setStorageSync('token', re.data.token);
-					uni.setStorageSync('Customer', JSON.stringify(re.data.customer));
-					uni.navigateBack({ delta:2,
-					animationType: 'pop-out',
-					animationDuration: 200})
+					if (re.data.token) {
+						Login.setToken(re.data.token);
+						console.log(Login.getToken())
+						uni.setStorageSync('token', re.data.token);
+						uni.setStorageSync('Customer', JSON.stringify(re.data.customer));
+						uni.navigateBack({
+							delta: 2,
+							animationType: 'pop-out',
+							animationDuration: 200
+						})
+					} else {
+						uni.showToast({
+							title: "登陆失败",
+							icon: "error"
+						})
+					}
+
 				})
 			},
-			register: function(){
+			register: function() {
 				uni.redirectTo({
-					url:"../register/register"
+					url: "../register/register"
 				})
 			}
 		}
@@ -98,5 +117,4 @@
 		height: 35px;
 		margin-left: 10px;
 	}
-
 </style>
