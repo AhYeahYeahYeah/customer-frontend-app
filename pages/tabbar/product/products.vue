@@ -17,7 +17,7 @@
 				</view>
 				<view class="uni-list-cell-db" style="{display:flex;height: 70rpx;padding-left: 120rpx;}">
 					<picker @change="bindPickerChange" :value="index" :range="types">
-						<view class="uni-input">{{types[index]}}</view>
+						<view class="uni-input" style="{display:flex;padding-left: 50rpx;background-color: #D9D9D9;width: 200rpx;color: #000000;font-size: 33rpx;padding-top: 8rpx;}">{{types[index]}}</view>
 					</picker>
 				</view>
 			</view>
