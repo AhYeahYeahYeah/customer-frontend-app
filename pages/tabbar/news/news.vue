@@ -30,13 +30,26 @@
 		<!-- 基于 uni-list 的页面布局 -->
 		<uni-list>
 			<!-- to 属性携带参数跳转详情页面，当前只为参考 -->
+
+			<!-- <view class="news-item" v-for="item in list" :key="item.ID"> -->
+			<uni-list-item title="动荡的市场中，你需要牢记巴菲特的这三个原则" note="时间: 2022-4-7">
+				<template v-slot:footer>
+					<view class="uni-thumb" style="margin: 0;">
+						<image src="/static/image/uniui-header-bg.png" mode="aspectFill"></image>
+					</view>
+				</template>
+			</uni-list-item>
+
+			<uni-list-item title="新时代新青年新方向" note="新时代新青年新方向新时代新青年新方向新时代新青年新方向"
+				thumb="/static/image/uniui-header-bg.png" thumb-size="lg" rightText="时间：2022" />
+
 			<uni-list-item direction="column" :note="'时间：2022'">
 				<!-- 通过header插槽定义列表顶部显示为图片 -->
 				<template v-slot:header>
-					<view class="uni-title">题目：Hello</view>
+					<view class="uni-title">动荡的市场中，你需要牢记巴菲特的这三个原则</view>
 					<view class="uni-thumb uni-content list-picture">
 						<!-- 当前判断长度只为简单判断类型，实际业务中，根据逻辑直接渲染即可 -->
-						<image src="@/static/uni-center/defaultAvatarUrl.png" mode="aspectFill"></image>
+						<image src="/static/image/uniui-header-bg.png" mode="aspectFill"></image>
 					</view>
 				</template>
 			</uni-list-item>
@@ -92,7 +105,7 @@
 			// 	}
 			// }
 			confirm() {
-				
+
 			},
 		},
 		/**
