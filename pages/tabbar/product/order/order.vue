@@ -55,6 +55,9 @@
 						<view class="uni-form-item uni-column">
 							<view class="input-info">
 								<view class="uni-flex uni-row">
+									<label class="label-input-tip">买入金额</label>
+								</view>
+								<view class="uni-flex uni-row">
 									<label
 										style="{width: 300rpx; border: #000000; font-size: 75rpx;font-weight: 700;}">￥</label>
 									<input class="uni-input"
@@ -62,9 +65,15 @@
 										type="number" placeholder="请输入购买金额" @input="onKeyInputPayment" />
 								</view>
 								<view class="line-Box" />
+								<view class="uni-flex uni-row" v-show="phoneShow">
+									<label class="label-input-tip">手机号</label>
+								</view>
 								<input v-show="phoneShow" class="uni-input" type="number" placeholder="请输入手机号"
 									@input="onKeyInputPhoneNumber" />
 								<view v-show="phoneShow" class="line-Box1" />
+								<view class="uni-flex uni-row" v-show="passwordShow">
+									<label class="label-input-tip">密码</label>
+								</view>
 								<input v-show="passwordShow" class="uni-input" password type="text" placeholder="请输入密码"
 									@input="onKeyInputPassword" />
 								<view v-show="passwordShow" class="line-Box1" />
@@ -255,6 +264,11 @@
 <style>
 	.uni-row {
 		background-color: #FFFFFF;
+	}
+	.label-input-tip{
+		padding-bottom: 30rpx;
+		font-size: 35rpx;
+		font-weight: 700;
 	}
 
 	.line-Box {
