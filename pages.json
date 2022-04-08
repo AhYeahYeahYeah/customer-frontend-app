@@ -102,7 +102,22 @@
                 "enablePullDownRefresh": false
             }
             
-        }
+        },{
+			"path": "pages/tabbar/news/tabbar",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/tabbar/news/news-item",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/tabbar/news/detail/detail",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}
     ],       
 	"tabBar": {
 		"color": "#7A7E83",
@@ -116,7 +131,7 @@
 				"text": "产品"
 			},
 			{
-				"pagePath": "pages/tabbar/news/news",
+				"pagePath": "pages/tabbar/news/tabbar",
 				"iconPath": "static/tabbar/news.png",
 				"selectedIconPath": "static/tabbar/news_active.png",
 				"text": "资讯"
