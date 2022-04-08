@@ -37,9 +37,7 @@
 			</view> -->
 			<uni-list style="height:130rpx;">
 				<uni-list-item :clickable="true" :show-extra-icon="true" link
-					:extraIcon="{type:'vip',color:'#999', size: 25}" @click="moreProducts"
-					style="margin-top: 0rpx;"
-					>
+					:extraIcon="{type:'vip',color:'#999', size: 25}" @click="moreProducts" style="margin-top: 0rpx;">
 					<uni-title slot="body" type="h2" title="为您推荐"></uni-title>
 					<!-- <template v-slot:footer>
 						<view v-if="item.showBadge" class="item-footer">
@@ -90,36 +88,38 @@
 			uni.showLoading({
 				title: "加载中..."
 			})
-			// #ifdef APP-PLUS
 			uni.getLocation({
 				type: 'wgs84',
 				geocode: true,
 				success: (res) => {
-					let point = new plus.maps.Point(res.longitude, res.latitude);
-					plus.maps.Map.reverseGeocode(
-						point, {},
-						(event) => {
-							let address = event.address; // 转换后的地理位置
-							let point = event.coord; // 转换后的坐标信息
-							let coordType = event.coordType; // 转换后的坐标系类型
-							let reg = /.+?(省|市|自治区|自治州|县|区)/g;
-							let addressList = address.match(reg).toString().split(",");
-							console.log(addressList[1], '位置信息')
-							this.location = addressList[1]
-							uni.setStorageSync('location', this.location)
-							if (this.searchinput == "") {
-								new EntityApi("pass")
-									.getProducts().then((res) => {
-										this.products = res.data.slice(0, 5);
-										uni.hideLoading();
-									})
-							}
-						}
-					)
+					// console.log(res.address.city)
+					this.location = res.address.city
+					uni.setStorageSync('location', this.location)
+					new EntityApi("pass")
+						.getProducts().then((res) => {
+							this.products = res.data.slice(0, 5);
+							uni.hideLoading();
+						})
+					// let point = new plus.maps.Point(res.longitude, res.latitude);
+					// plus.maps.Map.reverseGeocode(
+					// 	point, {},
+					// 	(event) => {
+					// 		let address = event.address; // 转换后的地理位置
+					// 		let point = event.coord; // 转换后的坐标信息
+					// 		let coordType = event.coordType; // 转换后的坐标系类型
+					// 		let reg = /.+?(省|市|自治区|自治州|县|区)/g;
+					// 		let addressList = address.match(reg).toString().split(",");
+					// 		console.log(addressList[1], '位置信息')
+					// 		this.location = addressList[1]
+					// 		uni.setStorageSync('location', this.location)
+					// 		if (this.searchinput == "") {
+
+					// 		}
+					// 	}
+					// )
 				}
 			});
-			// #endif
-			
+
 		},
 		// onShow() {
 		// 	uni.getLocation({
@@ -218,8 +218,8 @@
 </script>
 
 <style>
-	
 	@import "@/static/icon-kefu/iconfont.css";
+
 	view {
 		display: flex;
 		box-sizing: border-box;

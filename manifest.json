@@ -1,6 +1,6 @@
 {
     "name" : "customer-frontend-app",
-    "appid" : "__UNI__105880B",
+    "appid" : "__UNI__4B28357",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -17,8 +17,7 @@
         },
         "modules" : {
             "Speech" : {},
-            "Geolocation" : {},
-            "Maps" : {}
+            "Geolocation" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -132,5 +131,10 @@
             "urlCheck" : false
         },
         "usingComponents" : true
+    },
+    "h5" : {
+        "sdkConfigs" : {
+            "maps" : {}
+        }
     }
 }
