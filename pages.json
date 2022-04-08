@@ -105,7 +105,10 @@
         },{
 			"path": "pages/tabbar/news/tabbar",
 			"style": {
-				"navigationStyle": "custom"
+				"navigationBarTitleText": "资讯新闻",
+				"enablePullDownRefresh": false,
+				"navigationBarBackgroundColor": "#e87171",
+				"navigationBarTextStyle":"white"
 			}
 		},{
 			"path": "pages/tabbar/news/news-item",

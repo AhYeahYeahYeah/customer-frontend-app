@@ -37,7 +37,7 @@
 			</view> -->
 			<uni-list style="height:130rpx;">
 				<uni-list-item :clickable="true" :show-extra-icon="true" link
-					:extraIcon="{type:'paperplane',color:'#999', size: 25}" @click="moreProducts"
+					:extraIcon="{type:'vip',color:'#999', size: 25}" @click="moreProducts"
 					style="margin-top: 0rpx;"
 					>
 					<uni-title slot="body" type="h2" title="为您推荐"></uni-title>
