@@ -59,16 +59,13 @@
                     }
                 },
                 "geolocation" : {
-                    "system" : {
-                        "__platform__" : [ "ios", "android" ]
-                    }
-                },
-                "maps" : {
                     "amap" : {
+                        "__platform__" : [ "ios", "android" ],
                         "appkey_ios" : "ee6713d64481f2e9292a6e7932d5b988",
                         "appkey_android" : "6264a7707d25700527c990fda3430289"
                     }
-                }
+                },
+                "maps" : {}
             },
             "icons" : {
                 "android" : {

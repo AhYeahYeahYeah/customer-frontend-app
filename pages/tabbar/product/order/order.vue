@@ -118,15 +118,15 @@
 				passwordShow: false,
 				payment: 0,
 				phoneNum: "",
-				password: "",
-				entityApi: new EntityApi(Login.getToken())
+				password: ""
+				// entityApi: new EntityApi(Login.getToken())
 			}
 		},
 		onLoad: function(e) {
 			uni.showLoading({
 				title: "加载中..."
 			})
-			this.entityApi.getProduct(e.pid).then((res) => {
+			new EntityApi(Login.getToken()).getProduct(e.pid).then((res) => {
 				this.product = res.data;
 				this.productName = this.product[0].productName;
 				this.validityPeriod = this.product[0].validityPeriod;
@@ -158,7 +158,7 @@
 
 				}
 				this.settlementMethod = this.product[0].settlementMethod;
-				this.entityApi.getWorkFlow(this.product[0].fid).then((res) => {
+				new EntityApi(Login.getToken()).getWorkFlow(this.product[0].fid).then((res) => {
 					new ConductorApi().getMetaDataWorkFlow(res.data[0].name).then((data) => {
 						for (let i = 0; i < data.data.tasks.length; i++) {
 							if (data.data.tasks[i].name.indexOf('Profile') !== -1) {
@@ -198,7 +198,7 @@
 					phoneNum: this.phoneNum,
 					password: sha1(this.password)
 				};
-				this.entityApi.addOrder(orderData).then((res) => {
+				new EntityApi(Login.getToken()).addOrder(orderData).then((res) => {
 					if (res.status === 200) {
 						uni.connectSocket({
 							url: `ws://conductor.rinne.top:10451/websocket/${res.data.msg}`
@@ -209,7 +209,7 @@
 									// console.log(re);
 									if (re.data.status === 'COMPLETED') {
 										orderResult = true;
-										this.entityApi.updateOrder({
+										new EntityApi(Login.getToken()).updateOrder({
 											oid: res.data.msg,
 											workflowId: event.data,
 											status: 1
@@ -243,7 +243,7 @@
 												break;
 											}
 										}
-										this.entityApi.updateOrder({
+										new EntityApi(Login.getToken()).updateOrder({
 											oid: res.data.msg,
 											workflowId: event.data,
 											status: 2

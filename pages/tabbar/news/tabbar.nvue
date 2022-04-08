@@ -521,7 +521,7 @@
 		flex-wrap: nowrap;
 		align-items: center;
 		justify-content: center;
-		margin-left: 20rpx;
+		margin-left: 70rpx;
 	}
 
 	.refresh-icon {
