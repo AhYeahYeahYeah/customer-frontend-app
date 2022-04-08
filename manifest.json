@@ -16,7 +16,9 @@
             "delay" : 0
         },
         "modules" : {
-            "Speech" : {}
+            "Speech" : {},
+            "Geolocation" : {},
+            "Maps" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -24,20 +26,24 @@
             "android" : {
                 /* android打包配置 */
                 "permissions" : [
-                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
-                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
-                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ]
             },
@@ -51,6 +57,17 @@
                         "appid" : "25898929",
                         "apikey" : "Q3W3heRVtXq9U0fvKjVOaqNV",
                         "secretkey" : "5loQsDsz9BHZaRH5GUQDiypPyqS5uxMV"
+                    }
+                },
+                "geolocation" : {
+                    "system" : {
+                        "__platform__" : [ "ios", "android" ]
+                    }
+                },
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "ee6713d64481f2e9292a6e7932d5b988",
+                        "appkey_android" : "6264a7707d25700527c990fda3430289"
                     }
                 }
             },
@@ -87,17 +104,17 @@
                 }
             },
             "splashscreen" : {
-                "androidStyle" : "default",
+                "androidStyle" : "common",
                 "android" : {
-                    "hdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
-                    "xhdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
-                    "xxhdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png"
+                    "hdpi" : "C:/Users/hp/Desktop/项目文件/LOGO/favicon.png",
+                    "xhdpi" : "C:/Users/hp/Desktop/QQ图片20220328113024.png",
+                    "xxhdpi" : "C:/Users/hp/Desktop/QQ图片20220328113024.png"
                 },
-                "iosStyle" : "default",
+                "iosStyle" : "common",
                 "ios" : {
                     "iphone" : {
-                        "portrait-896h@3x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
-                        "landscape-896h@3x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
+                        "portrait-896h@3x" : "C:/Users/hp/Desktop/项目文件/LOGO/favicon.png",
+                        "landscape-896h@3x" : "C:/Users/hp/Desktop/项目文件/LOGO/favicon.png",
                         "portrait-896h@2x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png",
                         "landscape-896h@2x" : "C:/Users/hp/Desktop/项目文件/LOGO/logo.png"
                     }

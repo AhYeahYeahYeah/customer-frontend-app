@@ -90,6 +90,7 @@
 			uni.showLoading({
 				title: "加载中..."
 			})
+			// #ifdef APP-PLUS
 			uni.getLocation({
 				type: 'wgs84',
 				geocode: true,
@@ -117,6 +118,7 @@
 					)
 				}
 			});
+			// #endif
 			
 		},
 		// onShow() {
@@ -216,6 +218,8 @@
 </script>
 
 <style>
+	
+	@import "@/static/icon-kefu/iconfont.css";
 	view {
 		display: flex;
 		box-sizing: border-box;
@@ -263,8 +267,6 @@
 	.input-uni-icon {
 		line-height: 80rpx;
 	}
-
-	@import "@/static/icon-kefu/iconfont.css";
 
 	.uni-margin-wrap {
 		width: 690rpx;
