@@ -214,7 +214,8 @@
 				}
 			},
 			logout: function() {
-				uni.clearStorage()
+				uni.removeStorageSync('token');
+				uni.removeStorageSync('Customer');
 				this.token = 0
 				Login.setToken(0)
 				// this.customer.cname=''
