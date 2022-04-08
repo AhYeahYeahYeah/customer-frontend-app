@@ -1,23 +1,5 @@
 <template>
 	<view class="root">
-		<view class="navBar">
-			<view class="input-view">
-				<uni-icons class="input-uni-icon" type="search" size="18" color="#999" />
-				<input confirm-type="search" class="nav-bar-input" type="text" placeholder="输入搜索关键词"
-					@confirm="confirm" />
-			</view>
-			<!-- #ifndef APP-PLUS-NVUE -->
-			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
-				<image src="../../../../static/service.png" style="width: 50rpx;height: 50rpx;" />
-				<text class="text" style="color: white;">客服</text>
-			</view>
-			<!-- #endif -->
-			<view style="margin-top: 2rpx; margin-left: 30rpx;align-items: center;">
-				<image src="../../../../static/local.png" style="width: 50rpx;height: 50rpx;" />
-				<text class="text" style="color: white;">{{location}}</text>
-			</view>
-		
-		</view>
 		<view class="uni-padding-wrap">
 			<view class="uni-title">这是选项卡页面跳转详情页面的演示，下面是页面跳转时传递过来的标题：</view>
 			<view class="uni-title">{{title}}</view>

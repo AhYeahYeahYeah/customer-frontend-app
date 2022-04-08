@@ -104,7 +104,8 @@
 		<view class="operation">
 			<input confirm-type="send" @confirm="sub2" type="text" v-model="msgInput.msg1" :class="['msg-input1']" />
 			<!-- <view :class="['msg-input2']" @tap="sub2" /> -->
-			<view :class="['msg-input2']" />
+			<view :class="['msg-input2']"
+			 />
 		</view>
 	</view>
 </template>

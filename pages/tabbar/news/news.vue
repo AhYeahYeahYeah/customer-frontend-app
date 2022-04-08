@@ -1,4 +1,5 @@
 <template>
+	<!-- 遗弃 -->
 	<!--
 	 本页面模板教程：https://ext.dcloud.net.cn/plugin?id=2583
 	 uni-list 文档：https://ext.dcloud.net.cn/plugin?id=24

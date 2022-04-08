@@ -1,19 +1,12 @@
 <template>
 	<view class="container">
-<!-- 		<uni-card :is-shadow="false" is-full>
+		<!-- 		<uni-card :is-shadow="false" is-full>
 			<text class="uni-h6">登录</text>
 		</uni-card> -->
-				<uni-section title="注册" type="line">
+		<uni-section title="注册" type="line">
 			<view class="example">
-		<uni-file-picker 
-				fileMediatype="image" 
-				:image-styles="imageStyles" 
-				:limit="1"
-				file-extname="png,jpg"
-				@select="select" 
-
-				style="margin-left: 290rpx;margin-bottom: 50rpx;"
-				/>
+				<uni-file-picker fileMediatype="image" :image-styles="imageStyles" :limit="1" file-extname="png,jpg"
+					@select="select" style="margin-left: 290rpx;margin-bottom: 50rpx;" />
 				<uni-forms ref="baseForm" :modelValue="formData" v-if="token.length === 0">
 					<uni-forms-item label="账户" required>
 						<uni-easyinput v-model="formData.account" placeholder="请输入账户" />
@@ -29,65 +22,71 @@
 					</uni-forms-item>
 				</uni-forms>
 				<button type="default" @tap="submit" style="background-color: #e57373;color: white;">注册</button>
-				<text class="link" @tap="login" style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">已有账号？</text>
+				<text class="link" @tap="login"
+					style="color: #0A98D5;position: relative;top: 20rpx;left: 550rpx;">已有账号？</text>
 			</view>
 		</uni-section>
-	
+
 
 
 	</view>
 </template>
 
 <script>
-	import {AuthApi} from "../../../../api/restful.js";
+	import {
+		AuthApi
+	} from "../../../../api/restful.js";
 	import sha1 from "sha1";
-	import { pathToBase64, base64ToPath } from 'image-tools';
+	import {
+		pathToBase64,
+		base64ToPath
+	} from 'image-tools';
 	export default {
 		data() {
 			return {
 				// userAvatar: [],
-				imageStyles:{
-								width:80,
-								height:80,
-								border:{
-									color:"grey",
-									width:2,
-									style:'dashed',
-									radius:'36px'
-								}
-							},
+				imageStyles: {
+					width: 80,
+					height: 80,
+					border: {
+						color: "grey",
+						width: 2,
+						style: 'dashed',
+						radius: '36px'
+					}
+				},
 				token: '',
 				formData: {
 					avatar: '',
 					account: '',
-					nickName:'',
-					cname:'',
+					nickName: '',
+					cname: '',
 					password: ''
 				}
 			}
 		},
 		methods: {
-			urlTobase64(url){
-			    uni.request({
-				url: url,
-				method:'GET',
-				responseType: 'arraybuffer',
-				success: ress => {
-					let base64 = wx.arrayBufferToBase64(ress.data); //把arraybuffer转成base64 
-					base64 = 'data:image/jpeg;base64,' + base64 //不加上这串字符，在页面无法显示的哦
-					// console.log(base64)
-					this.formData.avatar=base64
-				}
-			    })
+			urlTobase64(url) {
+				uni.request({
+					url: url,
+					method: 'GET',
+					responseType: 'arraybuffer',
+					success: ress => {
+						let base64 = wx.arrayBufferToBase64(ress.data); //把arraybuffer转成base64 
+						base64 = 'data:image/jpeg;base64,' + base64 //不加上这串字符，在页面无法显示的哦
+						// console.log(base64)
+						this.formData.avatar = base64
+					}
+				})
 			},
 			submit: function() {
 				console.log(this.formData)
-				this.formData.password =sha1(this.formData.password)
+				this.formData.password = sha1(this.formData.password)
 				new AuthApi().customerRegister(this.formData).then((re) => {
 					// console.log(re)
-					this.formData=null
+					this.formData = null
 					uni.redirectTo({
-						url:"../login/login"
+						url: "../login/login"
 					})
 				})
 			},
@@ -99,18 +98,18 @@
 			select: function(e) {
 				console.log(e.tempFilePaths[0]);
 				uni.compressImage({
-				  src: e.tempFilePaths[0],
-				  // quality: 10,
-				  width: "150px",
-				  height: "150px",
-				  success: res => {
-				    // console.log(res.tempFilePath)
-					pathToBase64(res.tempFilePath)
-					.then(base64 => {
-						this.formData.avatar=base64;
-						console.log(base64);
-					})
-				  }
+					src: e.tempFilePaths[0],
+					// quality: 10,
+					width: "150px",
+					height: "150px",
+					success: res => {
+						// console.log(res.tempFilePath)
+						pathToBase64(res.tempFilePath)
+							.then(base64 => {
+								this.formData.avatar = base64;
+								console.log(base64);
+							})
+					}
 				})
 				// this.urlTobase64(e.tempFilePaths[0]);
 				// this.userAvatar= e.tempFilePaths[0];

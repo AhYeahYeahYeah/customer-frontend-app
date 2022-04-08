@@ -114,9 +114,11 @@
 			}
 		},{
 			"path": "pages/tabbar/news/detail/detail",
-			"style": {
-				"navigationStyle": "custom"
-			}
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "资讯",
+		        "enablePullDownRefresh": false
+		    }
 		}
     ],       
 	"tabBar": {
