@@ -97,6 +97,9 @@
 		ConductorApi
 	} from "../../../../api/restful.js";
 	import sha1 from "sha1";
+	import {
+		Login
+	} from "../../../../store/store.js";
 	export default {
 		data() {
 			return {
@@ -115,16 +118,15 @@
 				passwordShow: false,
 				payment: 0,
 				phoneNum: "",
-				password: ""
-
-
+				password: "",
+				entityApi: new EntityApi(Login.getToken())
 			}
 		},
 		onLoad: function(e) {
 			uni.showLoading({
 				title: "加载中..."
 			})
-			new EntityApi().getProduct(e.pid).then((res) => {
+			this.entityApi.getProduct(e.pid).then((res) => {
 				this.product = res.data;
 				this.productName = this.product[0].productName;
 				this.validityPeriod = this.product[0].validityPeriod;
@@ -156,7 +158,7 @@
 
 				}
 				this.settlementMethod = this.product[0].settlementMethod;
-				new EntityApi().getWorkFlow(this.product[0].fid).then((res) => {
+				this.entityApi.getWorkFlow(this.product[0].fid).then((res) => {
 					new ConductorApi().getMetaDataWorkFlow(res.data[0].name).then((data) => {
 						for (let i = 0; i < data.data.tasks.length; i++) {
 							if (data.data.tasks[i].name.indexOf('Profile') !== -1) {
@@ -196,7 +198,7 @@
 					phoneNum: this.phoneNum,
 					password: sha1(this.password)
 				};
-				new EntityApi().addOrder(orderData).then((res) => {
+				this.entityApi.addOrder(orderData).then((res) => {
 					if (res.status === 200) {
 						uni.connectSocket({
 							url: `ws://conductor.rinne.top:10451/websocket/${res.data.msg}`
@@ -207,7 +209,7 @@
 									// console.log(re);
 									if (re.data.status === 'COMPLETED') {
 										orderResult = true;
-										new EntityApi().updateOrder({
+										this.entityApi.updateOrder({
 											oid: res.data.msg,
 											workflowId: event.data,
 											status: 1
@@ -241,7 +243,7 @@
 												break;
 											}
 										}
-										new EntityApi().updateOrder({
+										this.entityApi.updateOrder({
 											oid: res.data.msg,
 											workflowId: event.data,
 											status: 2

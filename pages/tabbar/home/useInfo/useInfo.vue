@@ -39,9 +39,16 @@
 			</uni-list-item>
 		</uni-list>
 		<uni-popup ref="dialog" type="dialog">
-			<uni-popup-dialog mode="input" @confirm="updateValue" title="完善信息" placeholder="请填写信息"
-				:value="dialog.content">
+			<uni-popup-dialog v-if="dialog.now !== 'birthday'" mode="input" @confirm="updateValue" title="完善信息"
+				placeholder="请填写信息" :value="dialog.content">
 			</uni-popup-dialog>
+			<uni-popup-dialog v-else mode="input" @confirm="updateBirth" title="完善信息">
+				<view class="example-body">
+					<uni-datetime-picker type="date" :clear-icon="false" v-model="single"
+						@change="maskClick" />
+				</view>
+			</uni-popup-dialog>
+
 		</uni-popup>
 	</view>
 </template>
@@ -60,6 +67,7 @@
 	export default {
 		data() {
 			return {
+				single: '',
 				// avatar: '',
 				dialog: {
 					content: '',
@@ -166,9 +174,19 @@
 
 				// 				}
 				this.dialog.now = val
+				// console.log(this.dialog.content)
+				this.single = this.dialog.content
 				this.$refs.dialog.open()
 			},
+			maskClick(e) {
+				console.log('maskClick事件:', e);
+				this.dialog.content = e
+			},
+			updateBirth() {
+				this.updateValue(this.dialog.content)
+			},
 			updateValue(val) {
+				console.log(val)
 				switch (this.dialog.now) {
 					case 'nickName':
 						var data = {
@@ -219,7 +237,7 @@
 					case 'birthday':
 						var data = {
 							cid: this.customerBase.cid,
-							birthday: val+'T03:43:57.000Z'
+							birthday: val
 						}
 						new EntityApi(Login.getToken()).updateCustomerProfile(data).then((r) => {
 							console.log(r);
@@ -300,5 +318,10 @@
 		width: 80rpx;
 		height: 80rpx;
 		line-height: 50px;
+	}
+
+	.example-body {
+		background-color: #fff;
+		padding: 2px;
 	}
 </style>
