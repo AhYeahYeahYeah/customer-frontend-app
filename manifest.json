@@ -17,7 +17,8 @@
         },
         "modules" : {
             "Speech" : {},
-            "Geolocation" : {}
+            "Geolocation" : {},
+            "Payment" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -65,7 +66,10 @@
                         "appkey_android" : "6264a7707d25700527c990fda3430289"
                     }
                 },
-                "maps" : {}
+                "maps" : {},
+                "payment" : {
+                    "appleiap" : {}
+                }
             },
             "icons" : {
                 "android" : {
